@@ -1,0 +1,28 @@
+[View code on GitHub](https://github.com/wandb/weave/weave-js/src/components/Panel2/PanelDir/Component.tsx)
+
+The `weave` project is a codebase that contains a collection of reusable React components and utilities for building data visualization applications. The `PanelPreviewDir` component is one of these components and is used to display a directory tree structure in a panel. 
+
+The component imports several dependencies, including `LegacyWBIcon` from `@wandb/weave/common/components/elements/LegacyWBIcon`, `numeral`, `React`, `Table`, and `Pagination` from `semantic-ui-react`, and several utility functions from `@wandb/weave/core`. 
+
+The `PanelPreviewDir` component takes in a `PanelProps` object as its input, which is a generic type that specifies the type of the input. The `PanelProps` object is defined in the `Panel` component, which is a higher-order component that provides a common interface for all panels in the `weave` project. 
+
+The `PanelPreviewDir` component renders a `DirView` component, which is a functional component that takes in a `DirMetadata` object and a `path` array as its props. The `DirMetadata` object represents the directory tree structure, and the `path` array represents the current path in the directory tree. 
+
+The `DirView` component renders a `Table` component that displays the directory tree structure. The `Table` component has several `Table.Row` components that represent the directories and files in the directory tree. The `Table.Row` components are rendered conditionally based on whether they represent a directory or a file. 
+
+The `SubdirRow` component is rendered for directories, and it takes in a `DirMetadata` object, a directory name, a `path` array, and a `setFilePath` function as its props. The `SubdirRow` component renders a row in the table that displays the directory name, the number of subfolders and files in the directory, and the size of the directory. 
+
+The `SubfileRow` component is rendered for files, and it takes in a `FileMetadata` object, a file name, a `path` array, and a `setFilePath` function as its props. The `SubfileRow` component renders a row in the table that displays the file name, the file link, the file size, and a download button. 
+
+The `PanelPreviewDir` component also renders a `Pagination` component that allows the user to navigate through the directory tree structure. 
+
+Overall, the `PanelPreviewDir` component is a reusable component that can be used to display a directory tree structure in a panel. It provides a user-friendly interface for navigating through the directory tree structure and downloading files.
+## Questions: 
+ 1. What is the purpose of this code?
+- This code defines a React component called `PanelPreviewDir` that displays a file browser for a given directory.
+
+2. What external dependencies does this code have?
+- This code imports several modules from external packages, including `@wandb/weave`, `lodash`, `numeral`, and `semantic-ui-react`.
+
+3. What is the role of the `SubdirRow` and `SubfileRow` components?
+- These components define the rows in the file browser table for subdirectories and files, respectively. They take in props such as the directory or file metadata and the current path, and render the appropriate information in the table cells.

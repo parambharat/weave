@@ -1,0 +1,33 @@
+[View code on GitHub](https://github.com/wandb/weave/weave/ecosystem/huggingface/model_textclassification.py)
+
+This code defines several classes and types related to text classification using Hugging Face models. The main purpose of this code is to provide a pipeline for text classification using pre-trained Hugging Face models and to display the results in a user-friendly way.
+
+The `HFModelTextClassificationType` class is a type that extends `hfmodel.HFModelType` and is used to represent a Hugging Face model for text classification. The `FullTextClassificationPipelineOutputType` class is a type that extends `hfmodel.FullPipelineOutputType` and is used to represent the output of the text classification pipeline. It has three properties: `_model`, which is of type `HFModelTextClassificationType` and represents the Hugging Face model used in the pipeline, `model_input`, which is a string representing the input text, and `model_output`, which is a list of dictionaries representing the classification results. Each dictionary has two keys: `score`, which is a float representing the confidence score of the classification, and `label`, which is a string representing the label of the classification.
+
+The `ClassificationResultType` class is a type that extends `weave.types.ObjectType` and is used to represent a single classification result. It has four properties: `_model_name`, which is a string representing the name of the Hugging Face model used for the classification, `model_input`, which is a string representing the input text, `_score`, which is a float representing the confidence score of the classification, and `_label`, which is a string representing the label of the classification.
+
+The `ClassificationResult` class is a dataclass that represents a single classification result. It has the same properties as `ClassificationResultType` and is decorated with `weave.weave_class` to indicate that it should be used as a Weave class. It also has three methods: `model_name()`, which returns the `_model_name` property, `score()`, which returns the `_score` property, and `label()`, which returns the `_label` property.
+
+The `ClassificationResultPanel` class is a Weave panel that displays a table of classification results. It has one input node of type `list[ClassificationResult]` and uses the `Table` panel to display the results. The table has four columns: `model_name()`, which displays the name of the Hugging Face model used for the classification and is a link to the model page, `model_input`, which displays the input text, `score()`, which displays the confidence score of the classification, and `label()`, which displays the label of the classification.
+
+The `FullTextClassificationPipelineOutput` class is a dataclass that represents the output of the text classification pipeline. It has the same properties as `FullTextClassificationPipelineOutputType` and is decorated with `weave.weave_class` to indicate that it should be used as a Weave class. It also has two methods: `model_name()`, which returns the name of the Hugging Face model used for the classification, and `call()`, which takes an input string and returns a `FullTextClassificationPipelineOutput` object representing the classification results.
+
+The `FullTextClassificationResultPanel` class is a Weave panel that displays the output of the text classification pipeline. It has one input node of type `FullTextClassificationPipelineOutput` and uses the `Group` panel to display the results. The `Group` panel has two items: `input`, which displays the input text, and `output`, which displays the classification results as a plot.
+
+The `HFModelTextClassification` class is a dataclass that represents a Hugging Face model for text classification. It is decorated with `weave.weave_class` to indicate that it should be used as a Weave class. It has two methods: `pipeline()`, which returns a Hugging Face pipeline for the model, and `call()`, which takes an input string and returns a `FullTextClassificationPipelineOutput` object representing the classification results. It also has a `call_list()` method that takes a list of input strings and returns a list of `FullTextClassificationPipelineOutput` objects representing the classification results.
+
+The `apply_models()` function takes a list of `HFModelTextClassification` objects and a list of input strings and returns a list of `ClassificationResult` objects representing the classification results for all models and inputs. It does this by calling the `call_list()` method of each model for all inputs and creating a `ClassificationResult` object for each classification result.
+
+Overall, this code provides a complete pipeline for text classification using pre-trained Hugging Face models and allows the results to be displayed in a user-friendly way. It can be used as a module in a larger project that requires text classification functionality.
+## Questions: 
+ 1. What is the purpose of the `weave` module and how does it relate to this code?
+- A smart developer might ask what the `weave` module is and how it relates to this code. 
+- `weave` is a module that provides a framework for building and connecting data processing pipelines. It is used extensively throughout this code to define types, classes, and operations.
+
+2. What is the purpose of the `HFModelTextClassification` class and how does it work?
+- A smart developer might ask what the `HFModelTextClassification` class is and how it works. 
+- `HFModelTextClassification` is a subclass of `HFModel` that defines a pipeline for text classification using the Hugging Face Transformers library. It provides methods for calling the pipeline on input text and returning the output as a `FullTextClassificationPipelineOutput` object.
+
+3. What is the purpose of the `ClassificationResult` class and how is it used?
+- A smart developer might ask what the `ClassificationResult` class is and how it is used. 
+- `ClassificationResult` is a dataclass that represents the output of a text classification model on a single input. It is used in the `apply_models` function to aggregate the results of multiple models on multiple inputs into a single list of `ClassificationResult` objects.

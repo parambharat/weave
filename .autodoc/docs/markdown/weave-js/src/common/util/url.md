@@ -1,0 +1,24 @@
+[View code on GitHub](https://github.com/wandb/weave/weave-js/src/common/util/url.ts)
+
+The code in this file provides functions for encoding and decoding URIs, as well as parsing and manipulating URI paths. The purpose of this code is to address inconsistencies in URI decoding behavior from the 'history' library, which can cause errors when decoding URIs.
+
+The `encodeURIPercentChar` function takes a string and replaces any instances of '%' that are not followed by two hexadecimal characters with '%25', which is the proper encoding for '%'. This function is necessary because the 'history' library may not properly encode '%' characters in URIs.
+
+The `makeSafeURIFunction` function takes a URI function as an argument and returns a new function that catches errors that may occur when decoding URIs. If an error occurs, the original string is returned instead of throwing an error. This function is used to create the `decodeURIComponentSafe` function, which is a safe version of the `decodeURIComponent` function.
+
+The `decodeURIComponentHistoryHax` function is a workaround for the inconsistent decoding behavior of the 'history' library. It attempts to decode the URI using `decodeURIComponent`, but if an error occurs, it manually encodes '%' characters as '%25' and tries again using the `decodeURIComponentSafe` function.
+
+The `parseRunTabPath` function takes a URI path string and splits it into an array of path segments, decoding each segment using the `decodeURIComponentHistoryHax` function. This function is used to parse the path of a run tab in the larger project.
+
+The `removeUrlProtocolPrefix` function takes a string and removes any protocol prefix (e.g. 'http://') from the beginning of the string. This function is used to display URLs in a more user-friendly format in the larger project.
+
+Overall, this code provides a set of functions for working with URIs and addresses inconsistencies in URI decoding behavior from the 'history' library. These functions are used in the larger project to parse and manipulate URIs, particularly in the context of the run tab.
+## Questions: 
+ 1. What is the purpose of the `encodeURIPercentChar` function?
+- The purpose of the `encodeURIPercentChar` function is to replace any single `%` character in a string with `%25` to ensure proper URI encoding.
+
+2. What is the purpose of the `makeSafeURIFunction` function?
+- The purpose of the `makeSafeURIFunction` function is to create a new URI function that catches errors thrown by the original function and returns the original string if an error occurs.
+
+3. What is the purpose of the `decodeURIComponentHistoryHax` function?
+- The purpose of the `decodeURIComponentHistoryHax` function is to decode URIs that have been encoded inconsistently by the 'history' library by manually encoding any single `%` characters as `%25` before decoding.

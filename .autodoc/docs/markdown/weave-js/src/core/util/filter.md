@@ -1,0 +1,32 @@
+[View code on GitHub](https://github.com/wandb/weave/weave-js/src/core/util/filter.ts)
+
+The `filterNodes` function in the `weave` project takes in an `EditingNode` object, a filter function, and an optional boolean flag. It returns an array of `EditingNode` objects that pass the filter function.
+
+The purpose of this function is to traverse a graph of `EditingNode` objects and filter out nodes that do not meet a certain criteria. The `EditingNode` object represents a node in the graph and contains information about its type, value, and connections to other nodes.
+
+The `filterFn` parameter is a function that takes in an `EditingNode` object and returns a boolean value. This function is used to determine whether a node should be included in the final result. If the function returns `true` for a given node, that node is added to the result array.
+
+The `excludeFnBodies` parameter is an optional boolean flag that is used to exclude function bodies from the search. If this flag is set to `true`, the function will not search inside function bodies for additional nodes to include in the result.
+
+The function first checks if the filter function returns `true` for the initial `node` parameter. If it does, the node is added to the result array. If the node is a constant with a function type and the `excludeFnBodies` flag is not set, the function recursively calls itself on the `val` property of the node. This is done to search for additional nodes inside the function body that may meet the filter criteria.
+
+If the node is an output node, the function searches through its child nodes by iterating over the `inputs` property of the `fromOp` object and calling `filterNodes` on each input node. The resulting array of child nodes is concatenated with the current result array.
+
+Overall, this function is a useful tool for filtering out nodes in a graph based on a given criteria. It can be used in the larger project to perform various operations on the graph, such as finding all nodes of a certain type or filtering out nodes that are not relevant to a particular task. 
+
+Example usage:
+
+```
+const nodes = [node1, node2, node3, node4];
+const filteredNodes = filterNodes(node1, (node) => node.nodeType === 'const');
+console.log(filteredNodes); // [node1, node3]
+```
+## Questions: 
+ 1. What is the purpose of the `filterNodes` function?
+- The `filterNodes` function takes in an `EditingNode`, a filtering function, and an optional boolean flag, and returns an array of `EditingNode`s that pass the filtering function. 
+
+2. What is the significance of the `excludeFnBodies` parameter?
+- The `excludeFnBodies` parameter is an optional boolean flag that determines whether or not to exclude function bodies when filtering nodes. If it is set to `true`, then function bodies will be excluded from the filtering process. 
+
+3. What types of nodes are included in the resulting array?
+- The resulting array includes `EditingNode`s that pass the filtering function, as well as any child nodes of `const` nodes that are functions (if `excludeFnBodies` is not set to `true`) and any child nodes of `output` nodes.

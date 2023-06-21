@@ -1,0 +1,27 @@
+[View code on GitHub](https://github.com/wandb/weave/weave-js/src/components/WeavePanelBank/PanelBankFlowSection.tsx)
+
+The `PanelBankFlowSection` component is responsible for rendering a grid of panels in a flow layout, allowing users to resize and paginate through the panels. It is used in the larger project to display and manage a collection of panels within a container.
+
+The component takes in several props, including `panelBankSectionConfigRef`, `panelBankWidth`, `panelBankHeight`, `activePanelRefs`, `inactivePanelRefs`, and `renderPanel`. It also maintains internal state for the current page, resizing panel size, and resizing grid size.
+
+The main functionality of the component is to calculate the dimensions and positions of the panels based on the container size and flow configuration. It uses helper functions like `getBoxDimensions`, `getPagingParams`, `getBoxPosition`, `getClosestColumnCount`, `getClosestRowCount`, `getSnappedWidth`, and `getSnappedHeight` to achieve this.
+
+The component renders a grid of panels using the `Resizable` component from the `react-resizable` library. It allows users to resize the panels and updates the flow configuration accordingly using the `onPanelResize`, `onPanelResizeStop`, and `onPanelResizeStart` callbacks.
+
+Pagination is handled using the `Button` component from the `semantic-ui-react` library. Users can navigate through the pages of panels using the "previous" and "next" buttons, which update the `currentPage` state.
+
+The `PanelBankFlowSection` component also exports an `actionSetFlowConfig` function, which is used to update the flow configuration of a given `PanelBankSectionConfig`. The `useAction` hook is used to create a memoized version of this function, which is then passed down to the `PanelBankFlowSectionInnerComp` component.
+
+In summary, the `PanelBankFlowSection` component is responsible for rendering and managing a grid of panels in a flow layout, allowing users to resize and paginate through the panels. It is an essential part of the larger project for displaying and organizing panels within a container.
+## Questions: 
+ 1. **Question:** What is the purpose of the `PanelBankFlowSectionInnerComp` component and how does it interact with the `PanelBankFlowSectionComp` component?
+
+   **Answer:** The `PanelBankFlowSectionInnerComp` is a functional component that renders the inner part of the panel bank flow section, including the panels, resizing, and pagination. It receives its props from the `PanelBankFlowSectionComp` component, which is responsible for managing the state and actions related to the panel bank section configuration, such as updating the flow configuration and managing the current page.
+
+2. **Question:** How does the resizing functionality work in this code, and what are the constraints for resizing?
+
+   **Answer:** The resizing functionality is implemented using the `Resizable` component from the `react-resizable` library. The `onPanelResize`, `onPanelResizeStop`, and `onResizeStart` callbacks are used to handle the resizing events. The constraints for resizing are set using the `minConstraints` and `maxConstraints` props, with the minimum constraint being the `DEFAULT_PANEL_SIZE` and the maximum constraint being the panel bank width minus 2 times the gutter width.
+
+3. **Question:** How does the pagination functionality work in this code, and how are the current page and maximum page managed?
+
+   **Answer:** The pagination functionality is implemented using the `currentPage`, `setCurrentPage`, and `maxPage` variables. The `currentPage` variable stores the current page number, and the `setCurrentPage` function is used to update it. The `maxPage` variable is calculated based on the panel count, container width, container height, and flow configuration. The `useEffect` hook is used to ensure that the `currentPage` value is clamped within the valid range (0 to `maxPage`). The pagination controls are rendered using the `Button` components from the `semantic-ui-react` library, with the `onClick` handlers updating the `currentPage` value accordingly.

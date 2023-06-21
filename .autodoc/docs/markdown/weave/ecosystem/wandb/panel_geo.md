@@ -1,0 +1,18 @@
+[View code on GitHub](https://github.com/wandb/weave/weave/ecosystem/wandb/panel_geo.py)
+
+This file contains code for a panel called "Geo" in the larger "weave" project. The purpose of this panel is to render a plotly map with data points plotted based on their latitude and longitude coordinates. The panel is configurable through a UI that allows the user to specify functions for the x and y coordinates and the color of the data points. 
+
+The code defines a `GeoConfig` class that stores the configuration state of the panel. This class has three fields, each of which is a `weave.Node` representing a function for the x coordinate, y coordinate, and color of the data points. The `geo_default_config` function sets default values for these fields if they are not specified by the user. The `geo` function takes an input node and a `GeoConfig` object and returns a `weave_plotly.PanelPlotly` object that contains the rendered plotly map. The `geo_config` function takes the same input node and `GeoConfig` object and returns a `weave.panels.Group` object that contains the UI for configuring the panel.
+
+The `Geo` class is the interface for constructing the panel from Python. It inherits from `weave.Panel` and has an `id` field set to "Geo". The constructor takes an input node, a `vars` dictionary, a `GeoConfig` object, and additional options. It sets default values for the `GeoConfig` object if it is not specified by the user. It also defines functions for the x and y coordinates and the color of the data points based on the options passed to the constructor. The `selected` function is not currently implemented correctly and requires a paired output_type implementation in WeaveJS.
+
+Overall, this code defines the functionality for the "Geo" panel in the larger "weave" project. It allows the user to render a plotly map with configurable x and y coordinates and data point colors.
+## Questions: 
+ 1. What is the purpose of the `Geo` class and how is it used?
+- The `Geo` class is a subclass of `weave.Panel` and represents a panel that displays geographical data. It can be constructed with an input node, configuration options, and other parameters, and has methods for rendering the panel and its configuration editor.
+
+2. What is the purpose of the `geo` function and how does it relate to the `Geo` class?
+- The `geo` function is an operation that takes an input node of geographical data and a `GeoConfig` object, and returns a `weave_plotly.PanelPlotly` object that represents the rendered panel. It is used by the `Geo` class as the main rendering function for the panel.
+
+3. What is the purpose of the `geo_config` function and how does it relate to the `Geo` class?
+- The `geo_config` function is an operation that takes an input node of geographical data and a `GeoConfig` object, and returns a `weave.panels.Group` object that represents the configuration editor for the `Geo` panel. It is used by the `Geo` class to generate the configuration editor for the panel.

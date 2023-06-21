@@ -1,0 +1,24 @@
+[View code on GitHub](https://github.com/wandb/weave/weave/filesystem.py)
+
+The `weave.filesystem` module provides a sync/async interface for filesystem operations. It is designed to be the official interface for all interactions with the filesystem in the `weave` project. The module provides a `Filesystem` class and a `FilesystemAsync` class, which both have methods for common filesystem operations such as checking if a file exists, getting its size, creating directories, and opening files for reading and writing.
+
+One important feature of this module is that it provides threadsafe atomic read/write operations. This means that multiple threads can safely read and write to the same file without causing conflicts or data corruption. Another important feature is that the root directory is controlled via context for access control. This means that access to files outside of the root directory is denied, which helps to prevent unauthorized access to sensitive files.
+
+The `Filesystem` class provides synchronous methods for filesystem operations, while the `FilesystemAsync` class provides asynchronous methods. Both classes have a `path` method that takes a path string and returns a safe path string that is guaranteed to be within the root directory. The `exists`, `getsize`, `makedirs`, `touch`, and `stat` methods are self-explanatory and provide the same functionality as their counterparts in the `os` module.
+
+The `open_write` and `open_read` methods are context managers that can be used to safely open files for writing and reading, respectively. The `open_write` method opens a file for writing and returns a file object that can be used to write data to the file. When the context is exited, the file is closed and the data is atomically written to the file. The `open_read` method opens a file for reading and returns a file object that can be used to read data from the file. If the `enable_touch_on_read` environment variable is set to `True`, the file's access time is updated to the current time when the file is opened for reading.
+
+The `is_subdir` function is a helper function that takes two path strings and returns `True` if the first path is a subdirectory of the second path, and `False` otherwise. The `safe_path` function is another helper function that takes a path string and returns a safe path string that is guaranteed to be within the root directory. If the original path is not within the root directory, an exception is raised.
+
+The `get_filesystem` and `get_filesystem_async` functions return instances of the `Filesystem` and `FilesystemAsync` classes, respectively. The `get_filesystem_dir` function returns the root directory for the filesystem, which is determined by the `weave_filesystem_dir` environment variable and the user's cache key.
+
+Overall, the `weave.filesystem` module provides a safe and reliable interface for interacting with the filesystem in the `weave` project. Its threadsafe atomic read/write operations and access control features help to prevent data corruption and unauthorized access to sensitive files.
+## Questions: 
+ 1. What is the purpose of the `weave` project and how does this code fit into it?
+- The purpose of the `weave` project is not clear from this code alone. However, this code provides the official sync/async interface for filesystem operations in the project, and all interactions with the filesystem should go through this interface.
+
+2. What are the important features of this filesystem interface?
+- The important features of this filesystem interface include threadsafe atomic read/write operations and root directory controlled via context for access control.
+
+3. Why are there two classes `Filesystem` and `FilesystemAsync`?
+- The two classes `Filesystem` and `FilesystemAsync` provide synchronous and asynchronous versions of the same filesystem interface, respectively. The synchronous version is used for blocking I/O operations, while the asynchronous version is used for non-blocking I/O operations.

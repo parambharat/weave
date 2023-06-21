@@ -1,0 +1,24 @@
+[View code on GitHub](https://github.com/wandb/weave/weave-js/src/core/ops/domain/org.ts)
+
+This code defines a set of operations related to an organization (org) in the larger project called "weave". The operations are defined using the `makeOp` and `makeTaggingStandardOp` functions from other modules. 
+
+The `opOrgMembers` operation returns a list of users belonging to a given org. It takes an `org` argument and returns a list of `user` objects. The `opOrgReports`, `opOrgProjects`, and `opOrgArtifacts` operations return lists of reports, projects, and artifacts respectively, belonging to a given org. These operations take an `org` argument and return a list of `report`, `project`, and `artifact` objects respectively. 
+
+The `opOrgName` and `opOrgTeams` operations return the name and teams of a given org respectively. These operations take an `org` argument and return a string and a list of `entity` objects respectively. 
+
+All operations are marked as `hidden`, which means they are not exposed to the user interface. They are intended to be used internally by other parts of the system. 
+
+The `orgArgDescription` constant is defined as a string describing the `org` argument type. It is used in the `argDescriptions` property of some operations to provide a human-readable description of the argument. 
+
+The `connectionToNodes` function is imported from another module and is used to extract the nodes from a GraphQL connection object. 
+
+Overall, this code provides a set of operations that can be used to retrieve information about an org in the larger project. For example, the `opOrgMembers` operation can be used to retrieve a list of users belonging to an org, which can then be used to display information about the org's members in the user interface.
+## Questions: 
+ 1. What is the purpose of the `weave` project and what does this file contribute to it?
+- It is not clear from this file alone what the purpose of the `weave` project is, but this file contains several operations related to retrieving information about an organization's members, reports, projects, and artifacts.
+
+2. What is the `makeOp` function and how is it used in this code?
+- The `makeOp` function is imported from `../../opStore` and is used to create an operation object with various properties such as `name`, `argTypes`, `description`, `resolver`, etc. that define how the operation should behave.
+
+3. Why is the `opOrgRuns` operation commented out and what is the issue with it?
+- The `opOrgRuns` operation is commented out because it is not safe for large organizations and the ordering operations over the runs table are too expensive. It is likely that this operation would cause performance issues or errors if used with a large organization's data.

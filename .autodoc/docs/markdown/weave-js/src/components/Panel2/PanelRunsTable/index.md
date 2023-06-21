@@ -1,0 +1,40 @@
+[View code on GitHub](https://github.com/wandb/weave/weave-js/src/components/Panel2/PanelRunsTable/index.tsx)
+
+The `weave` project is a collection of tools for building data science workflows. This file contains code for a React component called `PanelRunsTable` that is used to display tables of data from runs in a data science project. The component takes in a list of dictionaries, where each dictionary represents a run, and displays a table of data for each run. The component also allows the user to select which table to display using a dropdown menu.
+
+The `PanelRunsTable` component is defined as a functional component that throws an error if it is rendered directly. The component takes in two props: `inputType` and `PanelRunsTableConfigType`. `inputType` is an object that specifies the type of the input data that the component expects. `PanelRunsTableConfigType` is an object that contains configuration options for the component.
+
+The `PanelRunsTableConfig` component is also defined in this file. This component is used to render the dropdown menu that allows the user to select which table to display. The `PanelRunsTableConfig` component takes in the same props as the `PanelRunsTable` component, and it uses the `useNodeWithServerType` hook to get the data for the dropdown menu.
+
+The `Spec` object is also defined in this file. This object contains metadata about the `PanelRunsTable` component, including its `id`, `displayName`, and `inputType`. The `Spec` object also contains a function called `equivalentTransform` that is used to transform the input data into the output data that is displayed in the table. The `equivalentTransform` function uses the `opRunSummary` and `opPick` functions to extract the data for the selected table from the input data.
+
+Finally, the `Panel2.registerPanelFunction` function is called to register the `PanelRunsTable` component with the `Panel2` module. This allows the component to be used in other parts of the `weave` project.
+
+Example usage:
+
+```jsx
+import { PanelRunsTable } from 'weave';
+
+const runs = [
+  { id: 1, name: 'Run 1', data: { table1: [], table2: [] } },
+  { id: 2, name: 'Run 2', data: { table1: [], table2: [] } },
+];
+
+const App = () => {
+  return (
+    <div>
+      <PanelRunsTable input={runs} />
+    </div>
+  );
+};
+```
+## Questions: 
+ 1. What is the purpose of the `weave` project and what does this file specifically do?
+- The `weave` project is being imported at the beginning of the file and it provides various functions and types used throughout the code. This file specifically defines a React component called `PanelRunsTable` and its corresponding configuration component `PanelRunsTableConfig`, which are used to display and manipulate table data.
+
+2. What is the expected input and output of the `PanelRunsTable` component?
+- The expected input of the `PanelRunsTable` component is a list of typed dictionaries, and the expected output is a list of lists of typed dictionaries.
+- More specifically, the input type is a union of "none" and "run" types, and the output type is a list of lists of typed dictionaries with empty property types.
+
+3. What is the purpose of the `getKeysFromInputType` function and how is it used?
+- The `getKeysFromInputType` function takes in an input node type and a configuration object, and returns an object containing an array of table keys and a default value for the summary key. It is used in the `PanelRunsTableConfig` component to populate a dropdown menu with the available table keys and to set the summary key value based on user selection.

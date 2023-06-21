@@ -1,0 +1,21 @@
+[View code on GitHub](https://github.com/wandb/weave/weave-js/src/core/model/media/mediaTypes.ts)
+
+This file contains type definitions and type guard functions for various types of data that can be stored in the Weave project. The `WBType` type is the base type for all data types and contains a `wb_type` field that specifies the type of data. Each data type has its own type definition that extends `WBType` and adds additional fields specific to that type.
+
+For example, the `ConstWBType` type represents a constant value and has a `val` field that stores the value and an optional `is_set` field that indicates whether the value has been set. The `PythonObjectWBType` type represents a Python object and has a `class_name` field that stores the name of the Python class. Similarly, other types like `ListWBType`, `UnionWBType`, `ForeignKeyWBType`, `ForeignIndexWBType`, `PrimaryKeyWBType`, `NDArrayWBType`, `ClassesIdWBType`, `TableWBType`, `ImageFileWBType`, `VideoFileWBType`, `AudioFileWBType`, `HtmlFileWBType`, `BokehFileWBType`, `Object3DFileWBType`, `MoleculeFileWBType`, `PytorchSavedModelWBType`, `TimestampWBType`, `JoinedTableWBType`, `PartitionedTableWBType`, and `WBTraceTreeWBType` have their own specific fields.
+
+The type guard functions like `isConstWBType`, `isPythonObjectWBType`, `isListWBType`, etc. take a `WBType` object as input and return a boolean indicating whether the object is of the specified type. These functions are useful for checking the type of data before performing operations on it.
+
+Overall, this file provides a way to define and check the types of data that can be stored in the Weave project. It ensures that the data is properly formatted and can be used correctly by other parts of the project. For example, if a user tries to store an image file as a constant value, the type guard functions will catch the error and prevent the data from being stored incorrectly.
+## Questions: 
+ 1. What is the purpose of the `WBType` interface and its various subtypes?
+- The `WBType` interface and its subtypes define different types of data that can be stored in the `weave` project.
+- Each subtype has a `wb_type` property that identifies the type of data it represents, along with additional properties specific to that type.
+
+2. What is the purpose of the `isXWBType` functions?
+- The `isXWBType` functions are type guard functions that check if a given `WBType` object is of a specific subtype.
+- They return a boolean value indicating whether the object is of the expected type, which can be used to perform type-specific operations on the object.
+
+3. What are some examples of media types that can be stored in the `weave` project?
+- Examples of media types that can be stored in the `weave` project include image files, audio files, HTML files, Bokeh files, 3D object files, molecule files, and PyTorch model files.
+- Each media type has a corresponding subtype of `WBType` that can be used to store and retrieve data of that type.

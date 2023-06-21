@@ -1,0 +1,20 @@
+[View code on GitHub](https://github.com/wandb/weave/weave-js/src/common/containers/DragDropContainer/DragSource.tsx)
+
+The `DragSource` component is a React component that provides drag-and-drop functionality to its children. It is part of the larger `weave` project and is used to enable drag-and-drop interactions between different parts of the application.
+
+The `DragSource` component takes several props, including `children`, `partRef`, `data`, `className`, `style`, `draggingStyle`, `callbackRef`, `onMouseUp`, `onDragStart`, and `onDragEnd`. The `children` prop is the content that will be draggable, while the `partRef` prop is a reference to the part of the component that should be draggable. The `data` prop is an optional object that can be used to store data about the drag operation, while the `className`, `style`, and `draggingStyle` props are used to style the component. The `callbackRef`, `onMouseUp`, `onDragStart`, and `onDragEnd` props are callbacks that can be used to handle various events during the drag operation.
+
+The `DragSource` component uses the `useContext` hook to get access to the `DragDropContext`, which provides information about the current drag-and-drop state. It then uses this information to determine whether the component should be draggable and whether it is currently being dragged. If the component is being dragged, it applies the `draggingStyle` prop to the component to indicate that it is being dragged.
+
+The `DragSource` component also handles various drag-and-drop events, such as `onDrag`, `onDragStart`, and `onDragEnd`. During the `onDrag` event, it checks whether the user is dragging near the top or bottom of the page and automatically scrolls the window if necessary. It also checks whether the user has pressed or released the shift key and updates the drag-and-drop state accordingly. During the `onDragStart` event, it sets the drag-and-drop state to indicate that the drag operation has started and sets the drag data if the `data` prop is provided. Finally, during the `onDragEnd` event, it resets the drag-and-drop state to its initial values.
+
+Overall, the `DragSource` component provides a simple way to enable drag-and-drop interactions between different parts of the `weave` application. It handles many of the details of the drag-and-drop operation, such as styling the component during the drag operation and handling various drag-and-drop events. Developers can use this component to quickly add drag-and-drop functionality to their own components without having to worry about the underlying implementation details.
+## Questions: 
+ 1. What is the purpose of this code?
+- This code defines a component called `DragSource` that provides drag and drop functionality for its children.
+
+2. What external libraries does this code use?
+- This code imports `classnames`, `lodash`, and `React`.
+
+3. What props does the `DragSource` component accept?
+- The `DragSource` component accepts several props including `children`, `partRef`, `data`, `className`, `style`, `draggingStyle`, `callbackRef`, `onMouseUp`, `onDragStart`, and `onDragEnd`.

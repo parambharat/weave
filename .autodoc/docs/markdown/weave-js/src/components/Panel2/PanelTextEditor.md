@@ -1,0 +1,23 @@
+[View code on GitHub](https://github.com/wandb/weave/weave-js/src/components/Panel2/PanelTextEditor.tsx)
+
+The code is a module that exports a React component called `PanelTextEditor` and a `Spec` object. The `PanelTextEditor` component is a text editor that uses the MonacoEditor component from the `@wandb/weave/common/components/Monaco/Editor` module. The component takes in a `PanelStringEditorProps` object as a prop, which is defined as a `PanelProps` object with a specific `inputType`. The `inputType` object is a union type that contains a list of file extensions and their corresponding `wbObjectType`. 
+
+When the `PanelTextEditor` component is rendered, it first creates a `contentsNode` object using the `opFileContents` function from the `@wandb/weave/core` module. This function takes in the `file` property from the `props.input` object and returns a node that represents the contents of the file. The `contentsNode` object is then used to create a `contentsValueQuery` object using the `useNodeValue` hook from the `../../react` module. This hook returns a query object that contains the result of the `contentsNode` object. The `contents` variable is then set to the `result` property of the `contentsValueQuery` object.
+
+The `PanelTextEditor` component then creates a `updateVal` function using the `useMutation` hook from the `../../react` module. This function takes in the `contentsNode` object and a mutation type of `'string-set'`. The `nodeValueQuery` object is then created using the `useNodeValue` hook with the `props.input` object as its argument. If the `loading` property of the `nodeValueQuery` object is true, the `Panel2Loader` component is returned. Otherwise, the `MonacoEditor` component is returned with the `language` property set to `'python'`, the `value` property set to the `contents` variable, and the `onChange` property set to a function that logs the new value and calls the `updateVal` function with the new value.
+
+The `Spec` object is an object that contains metadata about the `PanelTextEditor` component. It has a `hidden` property set to `true`, an `id` property set to `'text-editor'`, a `Component` property set to the `PanelTextEditor` component, and an `inputType` property set to the `inputType` object defined earlier.
+
+This code can be used in a larger project as a text editor component that can be used to edit files with various extensions. The `EXTENSION_INFO` object can be modified to include additional file extensions and their corresponding `wbObjectType`. The `PanelTextEditor` component can be used in a panel or dashboard to allow users to edit files in real-time. The `Spec` object can be used to register the `PanelTextEditor` component with the Weave framework.
+## Questions: 
+ 1. What is the purpose of the `PanelTextEditor` component?
+   
+   The `PanelTextEditor` component is used to render a Monaco editor for editing text files of various extensions.
+
+2. What is the `EXTENSION_INFO` object used for?
+   
+   The `EXTENSION_INFO` object is used to map file extensions to the appropriate Monaco editor language mode.
+
+3. Why is there a TODO comment about lazy loading MonacoEditor?
+   
+   The TODO comment suggests that the `MonacoEditor` component is currently being imported directly, and should instead be lazy loaded to improve performance.

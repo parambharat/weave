@@ -1,0 +1,20 @@
+[View code on GitHub](https://github.com/wandb/weave/weave/panels/panel_facet.py)
+
+The `weave` module provides a set of tools for building interactive data visualizations in Python. This file defines several classes and functions related to faceted displays, which are a common technique for visualizing data across multiple dimensions.
+
+The `FacetDimsConfig` class defines the dimensions of the faceted display, including the x and y axes, as well as optional select and detail dimensions. The `FacetCellSize` class defines the size of each cell in the display, and the `FacetCell` class is a dictionary that represents a single cell in the display.
+
+The `FacetConfig` class combines these components to define the overall configuration of the faceted display, including the table state, dimensions, cell size, padding, and selected cell. The `Facet` class extends the `Panel` class from the `panel` module and provides methods for setting the x and y dimensions, cell size, select and detail dimensions, and for debugging the dimension select functions.
+
+The `selected` method is an operation that filters the input data based on the selected cell, returning a list of matching items. This method uses the `List.filter` method from the `weave.ops` module to filter the input data based on the x and y dimensions of the selected cell.
+
+Overall, this code provides a flexible and extensible framework for creating faceted displays in Python, with support for multiple dimensions, cell sizes, and selection. It can be used as part of a larger data visualization project to provide interactive and exploratory visualizations of complex data sets.
+## Questions: 
+ 1. What is the purpose of the `Facet` class?
+- The `Facet` class is a subclass of `panel.Panel` and is used to create a facet plot from input data.
+
+2. What is the purpose of the `FacetDimsConfig` and `FacetCellSize` classes?
+- `FacetDimsConfig` is a dataclass that defines the x, y, select, and detail dimensions for the facet plot. `FacetCellSize` is a dataclass that defines the width and height of each cell in the plot.
+
+3. What is the purpose of the `selected` method?
+- The `selected` method is a weave operation that filters the input data based on the currently selected cell in the facet plot, and returns the filtered data.

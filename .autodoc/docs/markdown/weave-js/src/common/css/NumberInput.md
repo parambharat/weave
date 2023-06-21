@@ -1,0 +1,32 @@
+[View code on GitHub](https://github.com/wandb/weave/weave-js/src/common/css/NumberInput.less)
+
+The code above is a Less file that defines styles for a number input component in the Weave project. The component consists of a container that holds both a stepper and an input field. The stepper allows the user to increment or decrement the value in the input field. 
+
+The `number-input` class is the main class for the component. It contains two child classes: `__container` and `__stepper`. The `__container` class sets the display property to flex, which allows the child elements to be aligned horizontally. The `__stepper` class also sets the display property to flex, but with a column direction. This allows the stepper buttons to be aligned vertically. The `justify-content` property centers the buttons vertically within the container. The `z-index` property sets the stacking order of the stepper buttons, and the `margin-left` property positions the stepper to the left of the input field. The `color` property sets the color of the stepper buttons to a gray color defined in the `globals.less` file.
+
+The `__input` class sets the width of the input field to 10 times the value of `@spu`, which is a variable defined in the `globals.less` file. This ensures that the input field is wide enough to accommodate the largest possible value.
+
+This code can be used to style a number input component in the Weave project. To use this component, the developer would need to add the appropriate HTML markup and apply the `number-input` class to the container element. For example:
+
+```
+<div class="number-input">
+  <div class="number-input__container">
+    <div class="number-input__stepper">
+      <button>+</button>
+      <button>-</button>
+    </div>
+    <input type="number" class="number-input__input">
+  </div>
+</div>
+```
+
+This would create a number input component with stepper buttons and an input field styled according to the code in this file.
+## Questions: 
+ 1. What is the purpose of the `globals.less` file being imported at the beginning of the code?
+   - The `globals.less` file is likely containing global variables and mixins that are used throughout the project, and this code is importing them to use in this file.
+
+2. What is the significance of the `z-index: 0;` property in the `.number-input__stepper` selector?
+   - The `z-index: 0;` property sets the stacking order of the element, indicating that it should be behind other elements with higher z-index values.
+
+3. What is the value of `@gray500` and `@spu` used in this code?
+   - The value of `@gray500` is likely a shade of gray defined in the `globals.less` file, and the value of `@spu` is likely a unit of measurement defined in the same file. Without seeing the values assigned to these variables, it is impossible to know their exact values.

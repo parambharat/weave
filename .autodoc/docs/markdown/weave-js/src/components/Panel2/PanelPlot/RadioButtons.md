@@ -1,0 +1,18 @@
+[View code on GitHub](https://github.com/wandb/weave/weave-js/src/components/Panel2/PanelPlot/RadioButtons.tsx)
+
+This code defines a set of React components and related types for rendering radio buttons used in a panel plot. The `PanelPlotRadioButtons` component is the main export of this module, and it takes two props: `currentValue` and `setMode`. `currentValue` is a string that represents the currently selected brush mode, and `setMode` is a function that takes a string argument and updates the selected brush mode. The `PanelPlotRadioButtons` component renders a set of radio buttons, each of which corresponds to a different brush mode. The available brush modes are defined in the `BRUSH_MODES` constant, which is an array of two strings: `'zoom'` and `'select'`. 
+
+The `PanelPlotRadioButtons` component is composed of several other components, which are also defined in this module. The `IconComponent` component is a styled component that renders an icon for a single radio button. It takes four props: `isDarkMode`, `isActive`, `onClick`, and `name`. `isDarkMode` is a boolean that indicates whether the current color scheme is dark or light. `isActive` is a boolean that indicates whether the current radio button is selected. `onClick` is a function that is called when the radio button is clicked. `name` is a string that specifies the name of the icon to be rendered. The `IconComponent` component is composed of two other styled components: `IconWrapper` and `Icon`. `IconWrapper` is a styled `div` that wraps the `Icon` component and provides a background color and hover effect. `Icon` is a styled `div` that renders the icon itself. 
+
+The `GroupComponent` component is another styled component that renders a group of radio buttons. It takes one prop: `isDarkMode`, which is a boolean that indicates whether the current color scheme is dark or light. The `GroupComponent` component is composed of several `IconComponent` components, one for each brush mode. 
+
+Overall, this module provides a set of reusable React components for rendering radio buttons that allow the user to select a brush mode for a panel plot. The `PanelPlotRadioButtons` component can be used in other React components or pages that require this functionality. For example, it might be used in a dashboard that displays multiple panel plots, each with its own set of brush modes.
+## Questions: 
+ 1. What is the purpose of this code?
+- This code exports a React component called `PanelPlotRadioButtons` that renders a group of radio buttons with icons and allows the user to select a brush mode.
+
+2. What are the dependencies of this code?
+- This code imports several modules from `@wandb/weave` and `styled-components`.
+
+3. What is the role of the `IconComponent` and `GroupComponent` components?
+- `IconComponent` is a styled component that renders an icon with a wrapper div that changes its background color when hovered or clicked. `GroupComponent` is a styled component that renders a group of child components with a background color and a border.

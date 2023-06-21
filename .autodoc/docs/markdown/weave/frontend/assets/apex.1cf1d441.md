@@ -1,0 +1,36 @@
+[View code on GitHub](https://github.com/wandb/weave/weave/frontend/assets/apex.1cf1d441.js)
+
+The code provided is a configuration file for the Apex language. Apex is a programming language used by Salesforce for developing applications on the Salesforce platform. This configuration file defines the syntax highlighting rules for Apex in the context of the larger project called Weave.
+
+The configuration file defines a regular expression for identifying words and comments in the Apex language. It also defines the syntax for brackets, auto-closing pairs, and surrounding pairs. These are used to provide a better coding experience by automatically closing brackets and quotes as the user types.
+
+The file also defines a list of keywords, operators, and symbols used in the Apex language. These are used to provide syntax highlighting and code completion features in the code editor.
+
+The tokenizer defined in the configuration file is used to parse the Apex code and apply the syntax highlighting rules defined in the file. It defines rules for identifying keywords, types, operators, brackets, symbols, and strings in the code.
+
+Overall, this configuration file is an important part of the Weave project as it provides the syntax highlighting and code completion features for Apex code in the Weave code editor. It ensures that developers have a better coding experience and can write code more efficiently. 
+
+Example usage:
+
+```javascript
+import { conf, language } from 'weave/apex';
+
+// Use the configuration and language in a code editor
+const editor = monaco.editor.create(document.getElementById('container'), {
+  value: '',
+  language: 'apex',
+  theme: 'vs-dark',
+  automaticLayout: true,
+  ...conf,
+  ...language,
+});
+```
+## Questions: 
+ 1. What is the purpose of the `weave` project and how does this code file fit into it?
+- This code file is a language definition for the Apex programming language used in the `weave` project. The purpose of the `weave` project is not specified in the given information.
+
+2. What are the different types of comments supported by this language definition?
+- This language definition supports both line comments (using `//`) and block comments (using `/*` and `*/`).
+
+3. What are the different types of brackets and pairs supported by this language definition?
+- This language definition supports three types of brackets: curly braces `{}`, square brackets `[]`, and parentheses `()`. It also supports five types of auto-closing pairs and surrounding pairs, including double and single quotes.

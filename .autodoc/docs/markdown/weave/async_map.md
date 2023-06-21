@@ -1,0 +1,33 @@
+[View code on GitHub](https://github.com/wandb/weave/weave/async_map.py)
+
+The code in this file provides two different implementations of an asynchronous map function that ensures no more than n tasks run in parallel. The purpose of this code is to provide a way to execute a large number of asynchronous tasks while limiting the number of tasks that are running at any given time. This can be useful in situations where too many tasks running in parallel can cause performance issues or resource constraints.
+
+The first implementation, `map_with_parallel_workers`, creates a specified number of worker tasks that are responsible for processing items from a queue. The function takes a list of items to process, a task function that takes an item and returns a result, and a maximum number of parallel tasks to run. The function creates a queue for requests and a queue for responses, and then creates the worker tasks. Each worker task waits for a request from the request queue, processes the item using the task function, and then puts the result into the response queue. The main function adds each item to the request queue and then waits for a response for each item, storing the result in a list. Once all items have been processed, the worker tasks are cancelled and the list of results is returned.
+
+The second implementation, `map_with_n_live_tasks`, creates tasks as needed to process items from a list. The function takes the same arguments as the first implementation. The function creates a queue for responses and then enters a loop that continues until all items have been processed and all tasks have completed. The loop checks if the maximum number of parallel tasks has been reached and if there are more items to process. If both conditions are true, a new task is created to process the next item. If not, the function waits for a response from the response queue and stores the result in a list. Once all items have been processed and all tasks have completed, the list of results is returned.
+
+Both implementations use asyncio to manage the asynchronous tasks. These functions can be used in the larger project to process large numbers of asynchronous tasks while limiting the number of tasks that are running at any given time. For example, these functions could be used to process a large number of HTTP requests while limiting the number of requests that are sent at any given time to avoid overloading a server. 
+
+Example usage:
+
+```
+async def task_function(item):
+    # process item asynchronously and return result
+    ...
+
+items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+results = await map_with_parallel_workers(items, task_function, max_parallel=3)
+print(results)
+```
+## Questions: 
+ 1. What is the purpose of the `map_parallel_worker` function?
+   
+   The `map_parallel_worker` function is an async function that takes a task, a request queue, and a response queue as input, and runs an infinite loop that gets an item from the request queue, applies the task to the item, and puts the result in the response queue.
+
+2. What is the difference between `map_with_parallel_workers` and `map_with_n_live_tasks`?
+   
+   `map_with_parallel_workers` and `map_with_n_live_tasks` are both async functions that take a list of items and a task as input, and apply the task to each item in the list. However, `map_with_parallel_workers` limits the number of tasks that run in parallel by creating a fixed number of worker tasks, while `map_with_n_live_tasks` limits the number of tasks that are "live" (i.e., actively running) at any given time by dynamically creating new tasks as old ones complete.
+
+3. Why are these functions not used in the Weave code base right now?
+   
+   The code comments state that these functions were implemented to understand performance, but the results were inconclusive. Therefore, they are not currently used in the Weave code base.

@@ -1,0 +1,20 @@
+[View code on GitHub](https://github.com/wandb/weave/weave-js/src/components/Panel2/PanelExpression/common.ts)
+
+This code defines types and interfaces for a panel component in the Weave project. The panel is designed to display an expression, which is represented by an EditingNode object. The code exports two main types: PanelExpressionProps and PanelExpressionConfig. 
+
+PanelExpressionProps is a type that extends the PanelProps interface from another file in the project. It includes an "input" property that can be either a NodeOrVoidNode object of type "any" or a void node. The "standalone" property is optional and is used to indicate whether the panel is being displayed on its own or as part of a larger interface.
+
+PanelExpressionConfig is an interface that defines the configuration options for the panel. It includes the expression to be displayed (exp), the ID of the panel (panelId), the configuration options for the panel (panelConfig), and the input type for the panel (panelInputType). It also includes a boolean flag (exprAndPanelLocked) that is used to indicate whether the expression and panel are locked together, and a boolean flag (autoFocus) that is used to indicate whether the panel should be automatically focused when it is first displayed. Finally, there is a temporary flag (__weaveBackendRequired__) that is used to indicate whether any updates were performed with the Weave backend enabled.
+
+The code also exports a constant called EMPTY_EXPRESSION_PANEL, which is an instance of PanelExpressionConfig. This constant is used as a default configuration for the panel when it is first created.
+
+Overall, this code provides the necessary types and interfaces for a panel component that can display an expression in the Weave project. It allows for flexibility in the input type and configuration options for the panel, and provides a default configuration for new panels.
+## Questions: 
+ 1. What is the purpose of the `PanelExpressionProps` type and how is it different from `PanelProps`?
+- The `PanelExpressionProps` type is a modified version of `PanelProps` that includes an additional `input` property of type `NodeOrVoidNode<typeof inputType>`. This allows the panel to receive a void node as input, which is not possible with the original `PanelProps` type.
+
+2. What is the `EMPTY_EXPRESSION_PANEL` object used for?
+- The `EMPTY_EXPRESSION_PANEL` object is a default configuration for a panel that has an empty expression (`voidNode()`) and no panel ID or configuration. It also has a `panelInputType` of `'invalid'` to indicate that it is not a valid panel.
+
+3. What is the purpose of the `__weaveBackendRequired__` property in `PanelExpressionConfig`?
+- The `__weaveBackendRequired__` property is a temporary state used to determine if any updates were performed with the weave backend enabled. It is intended to be removed once weave python gets to TypeScript parity.

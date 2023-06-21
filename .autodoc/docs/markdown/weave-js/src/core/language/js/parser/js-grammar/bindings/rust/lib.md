@@ -1,0 +1,25 @@
+[View code on GitHub](https://github.com/wandb/weave/weave-js/src/core/language/js/parser/js-grammar/bindings/rust/lib.rs)
+
+This code provides support for the weave language in the tree-sitter parsing library. The `language()` function is used to add the weave language to a tree-sitter parser, which can then be used to parse code written in the weave language. The `language()` function returns the tree-sitter `Language` for the weave grammar. 
+
+To use this code, you would first create a new parser using `tree_sitter::Parser::new()`. Then, you would call `parser.set_language(tree_sitter_weave::language())` to add the weave language to the parser. Finally, you would call `parser.parse(code, None)` to parse some code written in the weave language. 
+
+The `NODE_TYPES` constant provides the content of the `node-types.json` file for this grammar. This file defines the types of nodes that can be present in the parse tree for the weave language. 
+
+The code also includes commented-out constants for any queries that this grammar contains. These queries can be used to extract specific information from the parse tree, such as highlighting information or tag information. 
+
+The `tests` module includes a single test that verifies that the weave language can be loaded by a tree-sitter parser. 
+
+Overall, this code provides the necessary support for parsing code written in the weave language using the tree-sitter parsing library.
+## Questions: 
+ 1. What is the purpose of this code?
+   
+   This code provides weave language support for the tree-sitter parsing library. It defines a language function that adds the language to a tree-sitter parser and provides the content of the node-types.json file for this grammar.
+
+2. How do you use this code to parse some code?
+   
+   You can use the tree-sitter parser to parse some code by setting the language to tree_sitter_weave::language() and then calling the parser.parse() function with the code to parse.
+
+3. What are the other queries that this grammar contains?
+   
+   This code includes commented out constants for other queries that this grammar contains, including HIGHLIGHTS_QUERY, INJECTIONS_QUERY, LOCALS_QUERY, and TAGS_QUERY.

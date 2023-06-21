@@ -1,0 +1,26 @@
+[View code on GitHub](https://github.com/wandb/weave/weave-js/src/core/language/js/parser/js-grammar/src/scanner.c)
+
+This file contains an external scanner for the Weave project, which is a C++ library for parsing and manipulating JavaScript code. The purpose of this scanner is to provide additional functionality to the main parser by recognizing certain types of tokens that are not handled by the default scanner provided by the Tree-sitter library.
+
+The scanner defines four token types: AUTOMATIC_SEMICOLON, TEMPLATE_CHARS, and TERNARY_QMARK. AUTOMATIC_SEMICOLON is used to recognize semicolons that are automatically inserted by the JavaScript interpreter, while TEMPLATE_CHARS is used to recognize template literals (strings enclosed in backticks). TERNARY_QMARK is used to recognize the ternary operator (a shorthand way of writing an if-else statement).
+
+The scanner is implemented as a set of functions that are called by the main parser when it encounters a token that matches one of the defined types. The functions use the TSLexer interface provided by Tree-sitter to read and manipulate the input stream of characters.
+
+The scan_template_chars function scans the input stream for a template literal and returns true if one is found. It does this by iterating over the characters in the input stream and looking for the backtick character that marks the end of the literal. Along the way, it also recognizes the ${} syntax used to embed expressions inside the literal.
+
+The scan_whitespace_and_comments function skips over any whitespace or comments that appear in the input stream. It recognizes both single-line (//) and multi-line (/* */) comments.
+
+The scan_automatic_semicolon function recognizes semicolons that are automatically inserted by the JavaScript interpreter. It does this by looking for certain patterns of characters that indicate the end of a statement. For example, it recognizes semicolons that appear before a closing brace (}), before a comma (,), or before certain operators (+, -, etc.). It also recognizes special cases like the ++ and -- operators, which require a semicolon to be inserted after them.
+
+The scan_ternary_qmark function recognizes the ternary operator (a shorthand way of writing an if-else statement). It does this by looking for the ? character that marks the beginning of the operator, and then checking for certain patterns of characters that indicate the end of the operator. For example, it recognizes cases where the operator is followed by a period (.) and a digit.
+
+Overall, this scanner provides additional functionality to the main parser by recognizing certain types of tokens that are not handled by the default scanner provided by the Tree-sitter library. This allows the parser to more accurately parse JavaScript code and provide better error messages to the user.
+## Questions: 
+ 1. What is the purpose of this code?
+- This code defines an external scanner for the `weave` project that can scan for template characters, automatic semicolons, and ternary operators.
+
+2. What external dependencies does this code have?
+- This code includes the `tree_sitter/parser.h` header file and the `wctype.h` header file.
+
+3. What is the expected behavior if the `valid_symbols` array contains more than one valid symbol?
+- If the `valid_symbols` array contains more than one valid symbol, the scanner will prioritize scanning for template characters over automatic semicolons, and will prioritize scanning for automatic semicolons over ternary operators.

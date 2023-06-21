@@ -1,0 +1,38 @@
+[View code on GitHub](https://github.com/wandb/weave/weave/usage_analytics.py)
+
+This code is a part of the weave project and is used for analytics tracking. The code imports the `analytics` and `subprocess` modules and sets the `analytics.write_key` to a specific value. 
+
+The `whoami()` function uses the `subprocess.check_output()` method to run the `whoami` command in the terminal and returns the output as a string. 
+
+The `_identify()` function is used to identify the user and track their actions. It sets a global variable `identify_called` to `True` if it hasn't been called before, gets the username using the `whoami()` function, and then calls the `analytics.identify()` method with the username and a dictionary containing the key `"whoami"` and the value of the username. 
+
+The `track()` function is used to track actions and information. It first checks if analytics tracking is enabled using the `context_state.analytics_enabled()` method. If it is enabled, it calls the `_identify()` function to identify the user, and then calls the `analytics.track()` method with the username, the action string passed as an argument, and the info dictionary passed as an optional argument. 
+
+The `use_called()` function is a wrapper function for the `track()` function that tracks when the `use()` function is called. 
+
+The `show_called()` function is also a wrapper function for the `track()` function that tracks when the `show()` function is called and takes an optional `info` dictionary argument. 
+
+Overall, this code is used to track user actions and information using the `analytics` module and the `whoami()` function to identify the user. It can be used in the larger project to gather data on how users are interacting with the application and to improve the user experience. 
+
+Example usage:
+
+```
+from weave import track
+
+def use():
+    # do something
+    track("used function 'use'")
+
+def show():
+    # do something
+    track("used function 'show'", {"info": "some additional info"})
+```
+## Questions: 
+ 1. What is the purpose of the `analytics` module being imported?
+- The `analytics` module is likely being used to track user behavior and send data to an analytics service.
+
+2. What is the significance of the `identify_called` variable?
+- The `identify_called` variable is used to ensure that the `_identify()` function is only called once, preventing duplicate user identification.
+
+3. What is the purpose of the `context_state.analytics_enabled()` function call?
+- The `context_state.analytics_enabled()` function is likely checking whether analytics tracking is currently enabled in the application, and if not, the `track()` function will not execute.

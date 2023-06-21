@@ -1,0 +1,25 @@
+[View code on GitHub](https://github.com/wandb/weave/weave/decorator_class.py)
+
+The `weave` module contains a decorator function called `weave_class` that is used to update the names and types of operations defined within a class. The purpose of this function is to ensure that the operations are properly registered with the `memory_registry` and that any derived operations are also updated with the correct names and types.
+
+The `weave_class` function takes a single argument, `weave_type`, which is a type object that represents the type of the class being decorated. The function returns a decorator function that takes the class being decorated as its argument.
+
+The decorator function first checks each member of the class to see if it is an instance of `op_def.BoundOpDef`. If it is, the function updates the input types of the operation to include the `weave_type` if it is not already defined. This is done by checking if the `arg_types` dictionary of the input type contains a key called "self" with a value of `types.UnknownType()`. If it does, the function replaces this value with an instance of `weave_type`. Once the `self` type is defined, the function calls `derive_op.derive_ops` to derive any additional operations that may be defined based on the new input types.
+
+The decorator function also updates the names of the operations to include the name of the `weave_type`. This is done by checking if the name of the operation starts with "op-". If it does, the function renames the operation to include the name of the `weave_type` and updates the `memory_registry` accordingly. The function also updates any derived operations with the new name and type information.
+
+Finally, the decorator function sets the `instance_classes` and `instance_class` attributes of the `weave_type` to the class being decorated. This is done by checking if these attributes are already defined in the `__dict__` of the `weave_type`. If they are not, the function sets them to the decorated class.
+
+Overall, the `weave_class` function is an important part of the `weave` module that ensures that operations defined within a class are properly registered and updated with the correct names and types. This function is used extensively throughout the larger `weave` project to ensure that operations are defined and derived correctly.
+## Questions: 
+ 1. What is the purpose of the `weave_class` function and how is it intended to be used?
+   
+   The `weave_class` function is a decorator that takes a `weave_type` argument and is intended to be used to update the ops and derived ops of a class with proper names and types. It is used to add instance classes to the `weave_type` argument.
+
+2. What is the purpose of the `derive_op` module and how is it used in this code?
+   
+   The `derive_op` module is used to derive ops based on the input types of the ops that are defined and registered. It is used in this code to derive ops after a self type is added to the input types of an op.
+
+3. What is the purpose of the `registry_mem` module and how is it used in this code?
+   
+   The `registry_mem` module is used to register ops and rename ops. It is used in this code to rename function op names with method op names and to rename ops in the memory registry.

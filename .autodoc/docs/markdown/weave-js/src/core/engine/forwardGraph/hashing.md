@@ -1,0 +1,26 @@
+[View code on GitHub](https://github.com/wandb/weave/weave-js/src/core/engine/forwardGraph/hashing.ts)
+
+The `HashingStorage` class is a part of the `weave` project and is responsible for storing and managing the forward operations of a graph. The class implements the `ForwardGraphStorage` interface, which defines the methods for managing the forward operations of a graph.
+
+The class has three private properties: `hash`, `roots`, and `ops`. The `hash` property is an instance of the `Hasher` class, which is used to generate unique identifiers for the operations. The `roots` property is a `Set` that stores the root operations of the graph. The `ops` property is a `Map` that stores the forward operations of the graph.
+
+The constructor of the class initializes the `hash` property with an instance of the `MemoizedHasher` class. The `MemoizedHasher` class is a subclass of the `Hasher` class that caches the hash values of the operations to improve performance.
+
+The `getRoots` method returns the `roots` property, which is a `Set` of the root operations of the graph.
+
+The `getOp` method takes an operation as an argument and returns the corresponding forward operation from the `ops` property. The `opId` method of the `hash` property is used to generate a unique identifier for the operation, which is used as the key to retrieve the forward operation from the `ops` property.
+
+The `setOp` method takes a forward operation as an argument and adds it to the `ops` property. The `opId` method of the `hash` property is used to generate a unique identifier for the operation, which is used as the key to store the forward operation in the `ops` property.
+
+The `size` method returns the number of forward operations stored in the `ops` property.
+
+Overall, the `HashingStorage` class provides a way to store and manage the forward operations of a graph in the `weave` project. It uses a `Hasher` instance to generate unique identifiers for the operations and stores them in a `Map`. The class can be used to retrieve and add forward operations to the graph.
+## Questions: 
+ 1. What is the purpose of the `HashingStorage` class?
+- The `HashingStorage` class is a implementation of the `ForwardGraphStorage` interface that provides methods for getting and setting operations in a graph, as well as keeping track of the roots of the graph.
+
+2. What is the significance of the `MemoizedHasher` class?
+- The `MemoizedHasher` class is used to generate unique IDs for operations in the graph, which are used as keys in the `ops` map.
+
+3. What is the relationship between the `HashingStorage` class and the `Hasher` and `ForwardOp` classes?
+- The `HashingStorage` class uses an instance of the `Hasher` class to generate IDs for operations, and stores instances of the `ForwardOp` class in its `ops` map.

@@ -1,0 +1,23 @@
+[View code on GitHub](https://github.com/wandb/weave/weave/ops_primitives/dict.py)
+
+The `weave` module contains code that provides functionality for working with typed dictionaries. The module defines a `TypedDict` class that is decorated with the `weave_class` decorator. The `TypedDict` class provides methods for working with typed dictionaries, such as `pick`, `keys`, `merge`, and `values`. 
+
+The `pick` method is an operation that returns the value of a specified key in the dictionary. The `keys` method returns a list of all the keys in the dictionary. The `merge` method merges two dictionaries together. The `values` method returns a list of all the values in the dictionary. 
+
+The `dict_` function is an operation that creates a dictionary from a variable number of arguments. The `object_keytypes` function is an operation that returns a list of dictionaries containing the keys and types of a given object. 
+
+The module also defines a `typeddict_pick_output_type` function that determines the output type of the `pick` method based on the input types. The `is_const_union_of_type` function checks if a given type is a constant union of a specified type. The `_keytypes_resovler` function resolves the key types of an object. 
+
+Overall, this module provides useful functionality for working with typed dictionaries in a larger project. The `TypedDict` class and its methods can be used to manipulate and extract data from typed dictionaries, while the `dict_` and `object_keytypes` operations can be used to create and analyze dictionaries.
+## Questions: 
+ 1. What is the purpose of the `pick` method in the `TypedDict` class?
+    
+    The `pick` method is an operation that returns the value of the specified key in the `TypedDict` object. It uses the `tag_aware_dict_val_for_escaped_key` function to retrieve the value.
+
+2. What is the purpose of the `keys` method in the `TypedDict` class?
+    
+    The `keys` method is an operation that returns a list of all the keys in the `TypedDict` object.
+
+3. What is the purpose of the `object_keytypes` function?
+    
+    The `object_keytypes` function is an operation that returns a list of dictionaries containing the keys and their corresponding types for a given object. It uses the `_keytypes_resovler` function to recursively resolve the types of the object's properties.

@@ -1,0 +1,18 @@
+[View code on GitHub](https://github.com/wandb/weave/weave-js/src/components/Panel2/ConfigPanel/index.tsx)
+
+This file contains common components and utilities for building configuration panels. It is expected to mature and eventually become a general-purpose Weave graph editor. The file imports various components and styles from other files in the project and exports several components for use in other parts of the project.
+
+The `ConfigSection` component is a container for a group of configuration options. It takes a `label` prop to display a header for the section and renders its children as options. The `ConfigOption` component is a single configuration option that takes a `label` prop to display a label for the option and renders its children as the input field for the option. It also takes an optional `postfixComponent` prop to append a component after the input field, such as a button to add a new option.
+
+The file also exports several components for specific types of configuration options. `ModifiedDropdownConfigField` is a modified version of the `ModifiedDropdown` component that is styled to fit within a configuration panel. `NumberInputConfigField` is a component for numerical input fields. `ExpressionConfigField` is a component for input fields that accept Weave expressions. `TextInputConfigField` is a component for text input fields.
+
+The file also exports several styled components for use in the configuration panels. `ChildConfigContainer` is a container for nested configuration options. `ConfigSectionContainer` is a container for a `ConfigSection`. `ConfigSectionHeader` is a header for a `ConfigSection` that displays the `label` and an expand/collapse button. `ConfigSectionHeaderButton` is the expand/collapse button for a `ConfigSection`. `ConfigSectionOptions` is a container for the options in a `ConfigSection`. `ConfigOptionLabel` is a label for a `ConfigOption`. `ConfigOptionField` is the input field for a `ConfigOption`. `ConfigFieldWrapper` is a wrapper for a configuration input field that adds padding and a background color. `ConfigFieldModifiedDropdown` is a modified version of `ModifiedDropdown` that is styled to fit within a configuration panel. `IconDown` is a styled version of the `IconDownUnstyled` component.
+
+Overall, this file provides a set of reusable components and styles for building configuration panels in the Weave project. Developers can use these components to create custom configuration panels for various parts of the project.
+## Questions: 
+ 1. What is the purpose of this file and what components does it contain?
+- The file contains common components and utilities for building config panels, and it is expected to eventually become a general-purpose Weave graph editor. It contains components such as ConfigSection, ConfigOption, ModifiedDropdownConfigField, NumberInputConfigField, ExpressionConfigField, and TextInputConfigField.
+2. What is the difference between ConfigOption and ConfigOptionNew?
+- ConfigOptionNew is a newer version of ConfigOption that includes additional props such as actions and multiline, and it is used when the Weave Dash UI is enabled. ConfigOption is used when the Weave Dash UI is not enabled.
+3. What is the purpose of the ConfigFieldWrapper component?
+- The ConfigFieldWrapper component is used to wrap other components such as ModifiedDropdown and TextInput, and it provides styling such as padding and background color. It also includes an optional icon on the right side if the withIcon prop is passed.

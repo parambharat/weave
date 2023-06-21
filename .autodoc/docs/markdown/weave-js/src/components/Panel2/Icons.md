@@ -1,0 +1,20 @@
+[View code on GitHub](https://github.com/wandb/weave/weave-js/src/components/Panel2/Icons.tsx)
+
+This code defines a set of React components that render SVG icons. The icons are imported from various SVG files located in the `assets` directory. The purpose of this code is to provide a centralized location for all SVG icons used in the larger project, making it easier to manage and update them. 
+
+Each SVG icon component takes in SVGProps as a prop, which is a type defined in the `react` library. The `updateIconProps` function is used to set default values for the `width` and `height` props, and then spread the rest of the props onto the returned object. This ensures that all SVG icons have consistent sizing and can be easily customized with additional props.
+
+The SVG icon components are then exported for use in other parts of the project. For example, the `IconWeaveLogo` component can be used to render the Weave logo, while the `IconDelete` component can be used to render a delete icon. 
+
+In addition to the SVG icon components, there are also a few components that wrap the imported SVG components and apply a consistent style to them. These include `AgentSVG`, `ToolSVG`, `ChainSVG`, `LLMSVG`, `PromptSVG`, `DownSVG`, and `NextSVG`. These components are likely used in specific parts of the project where the icons need to be styled in a certain way.
+
+Overall, this code provides a convenient way to manage and use SVG icons in a React project. By centralizing the icons in one file, it makes it easier to maintain and update them, and ensures that they are used consistently throughout the project.
+## Questions: 
+ 1. What is the purpose of the `updateIconProps` function?
+   - The `updateIconProps` function is used to set default width and height values for SVG icons and to spread any additional props passed to the component.
+
+2. Why are there so many import statements for SVG icons?
+   - The import statements are used to import SVG icons as React components from various files located in the `assets` directory.
+
+3. What is the purpose of the `style` object and how is it used?
+   - The `style` object is used to set CSS styles for SVG icons that are displayed inline. It is used in several components to set the `style` prop of the SVG element.

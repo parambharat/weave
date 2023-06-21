@@ -1,0 +1,18 @@
+[View code on GitHub](https://github.com/wandb/weave/weave-js/src/components/Panel2/PanelComp.styles.ts)
+
+This file contains a set of styled components that are used to create various UI elements in the larger project called "weave". The components are written using the styled-components library, which allows developers to write CSS code directly in their JavaScript files.
+
+The `ControlWrapper` component is a container that wraps other UI elements and provides a bar at the top that can be used to display additional controls. The `ControlWrapperBar` component is the bar itself, which is hidden by default but becomes visible when the user hovers over the `ControlWrapper`. The `ControlWrapperContent` component is the main content area of the `ControlWrapper`, which can be set to overflow:hidden if the `canFullscreen` prop is set to true.
+
+The `IconButton` component is a simple button that displays an icon and can be used to trigger various actions. The `FullscreenButton` component is a specific type of `IconButton` that displays a fullscreen icon and is used to toggle fullscreen mode. The `DevQueryIcon` component is another type of `Icon` that displays a chart area icon and is used to represent a data query feature.
+
+The `DevQueryPopupContent` and `DevQueryPopupLabel` components are used to display a popup window with data query results. The `Panel2SizeBoundary`, `Panel2FullScreen`, `Panel2FullScreenMain`, `Panel2FullScreenConfig`, `Panel2LoaderStyle`, and `GrowToParent` components are used to create a resizable panel that can be used to display various types of content. The `FullScreenModal` component is a modal window that is used to display content in fullscreen mode.
+
+Overall, these components provide a set of reusable UI elements that can be used throughout the larger "weave" project to create a consistent and visually appealing user interface. Developers can use these components by importing them into their own files and passing in the appropriate props to customize their appearance and behavior. For example, a developer might use the `ControlWrapper` component to wrap a chart component and provide a bar at the top with controls for zooming and panning.
+## Questions: 
+ 1. What is the purpose of the `ControlWrapper` component and its related interfaces?
+- The `ControlWrapper` component is a styled div that serves as a container for other components. The `ControlWrapperProps` interface defines the props that can be passed to the component, including whether the component is currently being hovered over and whether it can be fullscreened.
+2. What is the purpose of the `DevQueryPopupContent` component?
+- The `DevQueryPopupContent` component is a styled div that serves as the content for a popup window. It has a maximum height and width, and its font size is set to 14.
+3. What is the purpose of the `Panel2LoaderStyle` component and its related keyframes?
+- The `Panel2LoaderStyle` component is a styled div that creates a loading animation using a repeating linear gradient. The `gradient` keyframes define the animation, which causes the gradient to move from left to right and back again indefinitely.

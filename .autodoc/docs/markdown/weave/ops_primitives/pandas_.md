@@ -1,0 +1,25 @@
+[View code on GitHub](https://github.com/wandb/weave/weave/ops_primitives/pandas_.py)
+
+This code defines a Weave class called `DataFrameTable` that represents a Pandas DataFrame. It also includes helper functions for filtering and grouping data within the DataFrame. 
+
+The `DataFrameTable` class is defined using the `@weave_class` decorator, which allows it to be used as a Weave operation. It takes a Pandas DataFrame as input and stores it as an attribute. The class includes several methods that can be used to manipulate the DataFrame, including `__getitem__`, `filter`, `map`, and `groupby`. 
+
+The `__getitem__` method allows the user to access a specific row of the DataFrame by index. The `filter` method takes a filter function as input and returns a new DataFrameTable object that includes only the rows that pass the filter. The `map` method takes a mapping function as input and applies it to each row of the DataFrame, returning a list of the results. The `groupby` method takes a grouping function as input and groups the DataFrame by the output of the function, returning a list of sub-DataFrames. 
+
+The code also includes several helper functions for converting between Weave and Pandas data types, as well as for converting filter and grouping functions from Weave's graph representation to Pandas' filter syntax. 
+
+Finally, the code includes two Weave operations for reading CSV files into DataFrameTable objects. The `pandasreadcsv` operation takes a file object as input and returns a DataFrameTable object representing the contents of the CSV file. The `refine_pandasreadcsv` operation takes the same input as `pandasreadcsv` but returns the type of the resulting DataFrameTable object, which is a TypedDict with keys corresponding to the columns of the DataFrame and values corresponding to their data types. 
+
+Overall, this code provides a convenient way to work with Pandas DataFrames within the Weave framework, allowing users to easily filter, map, and group data using Weave's graph-based syntax.
+## Questions: 
+ 1. What is the purpose of the `filter_fn_to_pandas_filter` and `groupby_fn_to_pandas_filter` functions?
+   
+   These functions are used to convert a filter or groupby function expressed as a graph into a Pandas filter or groupby function that can be applied to a Pandas DataFrame. A smart developer might wonder how these functions handle more complex filter or groupby functions, or if there are any limitations to their functionality.
+
+2. What is the purpose of the `DataFrameTable` class and how is it used?
+   
+   The `DataFrameTable` class is a Weave class that wraps a Pandas DataFrame and provides a set of Weave operations that can be applied to it. It is used to represent a table of data that can be filtered, grouped, and mapped using Weave operations. A smart developer might wonder how this class handles large datasets or if there are any performance considerations to keep in mind.
+
+3. What is the purpose of the `refine_pandasreadcsv` operation and how is it used?
+   
+   The `refine_pandasreadcsv` operation is used to infer the schema of a CSV file and return a `DataFrameTableType` object that describes the columns and data types of the file. It is used to provide type information to downstream operations that depend on the schema of the CSV file. A smart developer might wonder how this operation handles CSV files with missing or inconsistent data, or if there are any limitations to its functionality.

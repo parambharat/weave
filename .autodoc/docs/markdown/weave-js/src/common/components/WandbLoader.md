@@ -1,0 +1,31 @@
+[View code on GitHub](https://github.com/wandb/weave/weave-js/src/common/components/WandbLoader.tsx)
+
+The `WandbLoader` and `TrackedWandbLoader` components are used to display a loading spinner in the Weave project. The `WandbLoader` component is a simple wrapper around the `Loader` component from the `semantic-ui-react` library, which takes care of displaying the spinner. The `TrackedWandbLoader` component extends the `WandbLoader` component and adds some additional functionality for tracking the component's lifecycle and sending analytics data.
+
+The `TrackedWandbLoader` component takes several props, including `captureException`, `name`, `profilingCb`, `samplingRate`, and `track`. The `name` prop is used to identify the loader, while the `samplingRate` prop determines the percentage of times that the component's lifecycle will be tracked. The `profilingCb` prop is an optional callback that can be used to add additional data to the analytics event. The `track` prop is a function that is used to send the analytics event to an external service.
+
+The `TrackedWandbLoader` component uses the `useLifecycleProfiling` hook from the `useLifecycleProfiling` module to track the component's lifecycle. This hook takes two arguments: the `name` of the component and a callback function that is called with an object containing data about the component's lifecycle. Inside this callback function, the `TrackedWandbLoader` component logs the lifecycle data to an external service using the `track` function. The `samplingRate` prop is used to determine whether or not to log the data based on a random number generator.
+
+Overall, the `WandbLoader` and `TrackedWandbLoader` components are used to display a loading spinner and track the component's lifecycle for analytics purposes. These components can be used throughout the Weave project to provide a consistent loading experience and gather data about how long components take to load. An example usage of the `TrackedWandbLoader` component might look like this:
+
+```
+import { TrackedWandbLoader } from 'weave';
+
+const MyComponent = () => {
+  return (
+    <div>
+      <TrackedWandbLoader name="my-component" />
+      <p>This is my component</p>
+    </div>
+  );
+};
+```
+## Questions: 
+ 1. What is the purpose of this code?
+- This code defines two React components: `WandbLoader` and `TrackedWandbLoader`, which render a loader from the `semantic-ui-react` library and track their lifecycle data using an external analytics platform.
+
+2. Why was the custom bouncing dots loader removed?
+- The custom bouncing dots loader broke with an upgrade of `react-spring` and used 100% CPU, so the semantic loader was switched back.
+
+3. What is the purpose of the `samplingRate` prop in `TrackedWandbLoader`?
+- The `samplingRate` prop is used to determine the percentage of times that the loader's lifecycle data should be tracked and sent to the analytics platform. It defaults to 10%.

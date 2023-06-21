@@ -1,0 +1,30 @@
+[View code on GitHub](https://github.com/wandb/weave/weave/context.py)
+
+This file contains several context managers and functions related to setting up and managing clients and servers for the Weave project. Weave is a platform for running and managing machine learning experiments.
+
+The `execution_client` context manager returns a client for use by the execution engine and op resolvers. It sets the client to use an in-process server and disables analytics.
+
+The `local_http_client` context manager sets up a local HTTP server and client for use in development. It starts the server, sets it as the current server in the context, and sets the client to use the server's URL.
+
+The `weavejs_client` context manager sets up a HTTP server and client for use with the Weave.js library. It starts the server, sets it as the current server in the context, and sets the client to use the server's URL with the `emulate_weavejs` flag set to True.
+
+The `use_fixed_server_port` function sets the Weave server to use port 9994 so that the WandB frontend can communicate with it. It sets the client to use the new server URL.
+
+The `use_frontend_devmode` function sets up the Weave server to use port 9994 and sets the frontend URL to point to a Vite server running on port 3000.
+
+The `_make_default_client` function creates a default client for use in notebooks. If the notebook kernel is using an in-process server, it returns a client for that server. Otherwise, it creates a new HTTP server and returns a client for that server.
+
+The `get_client` function returns the current client in the context. If there is no client, it creates a default client using `_make_default_client`.
+
+The `get_frontend_url` function returns the URL for the Weave frontend. If the frontend URL is not set in the context, it gets the URL from the current client or server. It then appends the `__frontend/weave_jupyter` path to the URL.
+
+These functions and context managers are used to set up and manage clients and servers for the Weave project. They provide a way to switch between different types of servers and clients depending on the use case. For example, the `local_http_client` context manager can be used during development to test the Weave server locally, while the `weavejs_client` context manager can be used with the Weave.js library. The `get_client` and `get_frontend_url` functions provide a way to get the current client and frontend URL from the context.
+## Questions: 
+ 1. What is the purpose of the `weave` project and what does this file specifically do?
+- The `weave` project is being imported and utilized in this file. It is unclear what the project does or what this file specifically does within the project.
+
+2. What are the differences between the `execution_client`, `local_http_client`, and `weavejs_client` context managers?
+- It is unclear what the differences are between these context managers and what their specific use cases are.
+
+3. What is the purpose of the `use_fixed_server_port` and `use_frontend_devmode` functions?
+- It is unclear what the purpose of these functions are and how they relate to the overall functionality of the `weave` project.

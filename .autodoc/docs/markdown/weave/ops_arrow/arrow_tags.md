@@ -1,0 +1,20 @@
+[View code on GitHub](https://github.com/wandb/weave/weave/ops_arrow/arrow_tags.py)
+
+The `weave` module contains functions for manipulating and tagging Arrow data structures. The `recursively_encode_pyarrow_strings_as_dictionaries` function takes a PyArrow array and recursively encodes any string arrays as dictionaries. If the array is a struct array, it creates a new struct array with the same fields, but with the string arrays encoded as dictionaries. If the array is a list array, it creates a new list array with the same offsets, but with the string arrays flattened and encoded as dictionaries. If the array is a string array, it encodes it as a dictionary. Otherwise, it returns the original array.
+
+The `direct_add_arrow_tags` function takes a PyArrow table or array and a struct array of arrow tags, and adds the tags to the data. It first recursively encodes the arrow tags as dictionaries using `recursively_encode_pyarrow_strings_as_dictionaries`. If the data is a table, it checks if it already has a `_tag` column, and combines the chunks if it does. If the data is a struct array, it checks if it has a `_tag` field. If it doesn't have tags, it creates empty arrays for the tag arrays and tag names. It then iterates over the fields in the arrow tags and adds any tags that don't already exist to the tag arrays and tag names. It creates a new struct array with the tag array and the original data, and returns it.
+
+The `tag_arrow_array_elements_with_single_tag_dict` function takes a PyArrow array and a dictionary of arrow tags, and tags each element of the array with the same set of tags. It first converts the dictionary to a PyArrow array, and then encodes it as a dictionary using `recursively_encode_pyarrow_strings_as_dictionaries`. It then creates a new struct array with the encoded tags repeated for each element of the original array, and passes it and the original array to `direct_add_arrow_tags`.
+
+The `awl_add_arrow_tags` function takes an `ArrowWeaveList`, a struct array of arrow tags, and a `Type` object, and adds the tags to the list. It first gets the `_arrow_data` from the list, and passes it and the arrow tags to `direct_add_arrow_tags`. It then creates a new `ArrowWeaveList` with the new value and a new object type that is the original object type with the tag type added. If the original list was already tagged, it adds the original tags to the new list using `tag_store`.
+
+The `tag_awl_list_elements_with_single_tag_dict` function takes an `ArrowWeaveList` and a dictionary of arrow tags, and tags each element of the list with the same set of tags. It first gets the tag type from the dictionary using `TypeRegistry.type_of`, and then gets the tag array for the list using `tag_arrow_array_elements_with_single_tag_dict`. It then passes the list, tag array, and tag type to `awl_add_arrow_tags`.
+
+The `pushdown_list_tags` function takes an `ArrowWeaveList` and tags each element of the list with the same tags as the list itself. It first checks if the list is already tagged using `tag_store`. If it is, it gets the tags and passes them to `tag_awl_list_elements_with_single_tag_dict`. Otherwise, it returns the original list.
+## Questions: 
+ 1. What is the purpose of the `recursively_encode_pyarrow_strings_as_dictionaries` function?
+- The function recursively encodes PyArrow strings as dictionaries, and returns a PyArrow array.
+2. What is the purpose of the `direct_add_arrow_tags` function?
+- The function adds arrow tags to a PyArrow table or array, and returns a new PyArrow struct array.
+3. What is the purpose of the `pushdown_list_tags` function?
+- The function checks if an ArrowWeaveList is tagged, and if so, tags its elements with a single tag dictionary using `tag_awl_list_elements_with_single_tag_dict`. It then returns the tagged ArrowWeaveList.

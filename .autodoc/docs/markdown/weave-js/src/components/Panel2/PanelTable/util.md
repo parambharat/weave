@@ -1,0 +1,18 @@
+[View code on GitHub](https://github.com/wandb/weave/weave-js/src/components/Panel2/PanelTable/util.ts)
+
+The `weave` module contains several utility functions and hooks that are used to create and manage tables in a web application. The `useAutomatedTableState` hook is used to automatically generate a table state based on the input data. It takes in an input node, the current table state, and a `WeaveInterface` object, and returns an object containing the loading state, the table state, and other relevant information. The `useRowsNode` hook is used to generate the rows of the table based on the table state and the input data. It takes in the input node, the table state, and the `WeaveInterface` object, and returns a node representing the rows of the table.
+
+The `useBaseTableColumnDefinitions` hook is used to generate the column definitions for the table. It takes in the ordered columns, the table state, and an `OpStore` object, and returns an object containing the column definitions. The `useOrderedColumns` hook is used to generate the ordered columns for the table. It takes in the table state and an array of pinned columns, and returns an array of ordered columns. The `getTableMeasurements` function is used to calculate the measurements of the table, such as the number of visible rows and the adaptive row height, based on the height and width of the table, the column widths, and other parameters.
+
+The `useBaseTableData` hook is used to generate the data for the table. It takes in the rows node, the unfiltered rows node, the rows per page, the adjusted index offset, an array of pinned rows, and the total row count, and returns an object containing the pinned and unpinned data for the table.
+
+Overall, these functions and hooks are used to create and manage tables in a web application. They provide a high-level interface for generating and manipulating table data, and can be used in conjunction with other modules in the `weave` project to create a complete web application.
+## Questions: 
+ 1. What is the purpose of the `useAutomatedTableState` function?
+- The `useAutomatedTableState` function is used to generate the state of a table based on the input data and the current table state, and returns loading status, table state, and other relevant information.
+
+2. What is the significance of the `stripTag` function?
+- The `stripTag` function is used to remove any tag from a given type, and returns the underlying type. This is important for type shape comparison and other operations that require the underlying type.
+
+3. What is the purpose of the `getTableMeasurements` function?
+- The `getTableMeasurements` function is used to calculate various measurements related to the table display, such as the number of visible rows, the adaptive row height, and the adjusted index offset. These measurements are used to determine how the table should be displayed based on the available space and other factors.

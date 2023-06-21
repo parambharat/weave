@@ -1,0 +1,28 @@
+[View code on GitHub](https://github.com/wandb/weave/weave_server_replay.sh)
+
+This code is a shell script that starts the Weave server. The Weave server is a component of the larger Weave project, which is a platform for building and deploying machine learning models. 
+
+The script sets two environment variables, `WEAVE_SERVER_DEBUG` and `WEAVE_SERVER_ENABLE_LOGGING`, to `true`. These variables control whether the server runs in debug mode and whether logging is enabled. Debug mode is useful during development because it provides more detailed error messages and other information that can help with debugging. Logging is important for monitoring the server's activity and diagnosing issues that may arise.
+
+The script then sets the `FLASK_APP` environment variable to `weave.weave_server`. This tells Flask, the web framework that the Weave server is built on, which module contains the server's code. 
+
+Finally, the script runs the Flask development server on port 9994. The development server is a lightweight server that is suitable for testing and development, but is not recommended for production use. 
+
+To use this script, you would typically navigate to the directory containing the script in a terminal and run it using the `./` notation, like this:
+
+```
+./start_weave_server.sh
+```
+
+This would start the Weave server on port 9994 with debugging and logging enabled. You could then interact with the server using HTTP requests to the appropriate endpoints. 
+
+Overall, this script is a simple but important component of the Weave project, as it provides a convenient way to start the server during development and testing.
+## Questions: 
+ 1. What is the purpose of this script?
+   - This script is used to start the Weave server with debugging and logging enabled on port 9994.
+
+2. What is the significance of the environment variables set in this script?
+   - The `WEAVE_SERVER_DEBUG` variable enables debugging mode for the Weave server, while `WEAVE_SERVER_ENABLE_LOGGING` enables logging. `FLASK_APP` specifies the location of the Flask application to run, which in this case is `weave.weave_server`.
+
+3. Are there any additional command line arguments that can be passed to this script?
+   - It is unclear from this code whether there are any additional command line arguments that can be passed to the `flask run` command. A smart developer might investigate the Flask documentation or the `weave.weave_server` code to find out.

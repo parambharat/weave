@@ -1,0 +1,16 @@
+[View code on GitHub](https://github.com/wandb/weave/weave-js/src/components/Panel2/PanelPanel.tsx)
+
+The `weave` project is a large project that includes various components and utilities for building interactive data visualizations. The code provided in this file is a module that exports two React components: `PanelPanelConfig` and `PanelPanel`. These components are used to render a panel in the `weave` application.
+
+The `PanelPanelConfig` component is responsible for rendering the configuration options for a panel. It takes in a `PanelPanelProps` object as a prop, which includes an `input` property that represents the data that the panel will display. The component uses various hooks and functions to manage the state of the panel's configuration options, including `usePanelPanelCommon`, `useUpdateConfigForPanelNode`, and `useSetPanelRenderedConfig`. The component also includes a sidebar that displays an outline of the panel's configuration options, which can be used to navigate and modify the panel's settings.
+
+The `PanelPanel` component is responsible for rendering the actual panel. It also takes in a `PanelPanelProps` object as a prop, which includes an `input` property that represents the data that the panel will display. The component uses the `ChildPanel` component to render the panel's contents.
+
+Overall, these components are used to create a customizable and interactive panel in the `weave` application. The `PanelPanelConfig` component allows users to modify the panel's configuration options, while the `PanelPanel` component displays the actual panel. These components are designed to work together to provide a seamless user experience.
+## Questions: 
+ 1. What is the purpose of the `useUpdateConfigForPanelNode` hook?
+   - The `useUpdateConfigForPanelNode` hook is used to update the configuration of a panel node and save the changes to the server.
+2. What is the difference between `PanelPanelConfig` and `PanelPanel` components?
+   - `PanelPanelConfig` is used to render the configuration of a panel, while `PanelPanel` is used to render the actual panel.
+3. What is the purpose of the `Outline` component?
+   - The `Outline` component is used to display the structure of a panel's configuration in a tree-like format and allows the user to edit the configuration by selecting and modifying individual nodes.

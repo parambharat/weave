@@ -1,0 +1,20 @@
+[View code on GitHub](https://github.com/wandb/weave/weave/ops_primitives/json_.py)
+
+The `weave` project includes a file called `load_jsonl.py` which contains three functions. The first function, `load_jsonl`, takes a file object in JSON Lines format and returns a list of dictionaries, where each dictionary represents a row in the file. The function reads each row in the file, converts it from a string to a dictionary using the `json.loads` method, and appends the resulting dictionary to a list. This function can be used to load data from a JSON Lines file into a Python program.
+
+The second function, `refine_readjsonl`, is a decorator that defines an operation called `file-refine_readjsonl`. This operation takes a file object in JSON Lines format and returns a `weave.types.Type` object that represents the data in the file. The operation uses the `load_jsonl` function to load the data from the file and then uses `weave.types.TypeRegistry.type_of` to convert the data into a `weave.types.Type` object. This operation is marked as hidden, which means it is not intended to be used directly by users of the `weave` project.
+
+The third function, `readjsonl`, is a decorator that defines an operation called `file-readjsonl`. This operation takes a file object in JSON Lines format and returns a list of dictionaries, where each dictionary represents a row in the file. The operation uses the `load_jsonl` function to load the data from the file and returns the resulting list. This operation also specifies the input and output types for the operation, as well as a refinement function (`refine_readjsonl`) that is used to convert the output of the operation into a `weave.types.Type` object. This operation can be used to read data from a JSON Lines file and return it as a list of dictionaries.
+
+The final function, `json_dumps`, is a simple utility function that takes any Python object and returns a JSON-encoded string representation of the object. This function can be used to convert Python objects into JSON format for storage or transmission.
+
+Overall, these functions provide a way to load and read data from JSON Lines files in the `weave` project, and to convert Python objects to and from JSON format. The `load_jsonl` function is used internally by the `file-readjsonl` and `file-refine_readjsonl` operations, which can be used to read and process JSON Lines files in a `weave` workflow. The `json_dumps` function can be used to encode Python objects as JSON strings for storage or transmission.
+## Questions: 
+ 1. What is the purpose of the `load_jsonl` function?
+    - The `load_jsonl` function is used to load data from a file in JSONL format and return it as a list of dictionaries.
+
+2. What is the purpose of the `refine_readjsonl` function and how is it used?
+    - The `refine_readjsonl` function is used to refine the output type of the `readjsonl` function. It takes a `FileBaseType` object with a `.jsonl` extension as input and returns a `Type` object. It is used as the `refine_output_type` argument in the `readjsonl` function.
+
+3. What is the purpose of the `json_dumps` function?
+    - The `json_dumps` function is used to convert a Python object to a JSON string. It takes any data type as input and returns a string in JSON format.

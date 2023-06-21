@@ -1,0 +1,30 @@
+[View code on GitHub](https://github.com/wandb/weave/weave-js/src/components/Panel2/PanelImage.tsx)
+
+The `weave` project is a collection of components and utilities for building data visualization tools. This file contains code for rendering an image panel with various overlay controls, such as bounding boxes and masks. 
+
+The `PanelImage` component is a functional component that takes two props: `config` and `input`. `input` is an object with a `type` property set to `'image-file'`. `config` is an object with optional properties that determine the layout and overlay controls for the image panel. 
+
+The `PanelImage` component uses the `useImageControls` hook from the `Controls` module to generate overlay controls based on the `input` type and `config` properties. The `useImageControls` hook returns an object with `maskControls`, `boxControls`, and `classSets` properties. `maskControls` and `boxControls` are arrays of objects that define the properties of the overlay controls. `classSets` is an object that maps class names to CSS styles for the overlay controls. 
+
+The `PanelImage` component also uses the `useMemo` hook to memoize the `imageArtifact` and `image` variables. `imageArtifact` is an object that contains information about the image file, such as its path and version. `image` is an object that contains information about the image itself, such as its width, height, and bounding boxes. 
+
+The `PanelImage` component renders a `CardImage` component with various props, including `image`, `boundingBoxes`, `masks`, `classSets`, `boxSliders`, `maskControls`, `boxControls`, and `hideImage`. `CardImage` is a component that renders an image with overlay controls. The `boundingBoxes` prop is an array of objects that define the properties of the bounding boxes. The `masks` prop is an array of objects that define the properties of the masks. The `classSets` prop is an object that maps class names to CSS styles for the overlay controls. The `boxSliders` prop is an object that maps value names to `BoundingBoxSliderControl` components. The `maskControls` and `boxControls` props are arrays of objects that define the properties of the overlay controls. The `hideImage` prop is a boolean that determines whether the image should be hidden. 
+
+The `PanelImageConfig` component is a functional component that takes three props: `config`, `updateConfig`, and `input`. `config` and `input` have the same meaning as in the `PanelImage` component. `updateConfig` is a function that updates the `config` prop. 
+
+The `PanelImageConfig` component uses the `useImageControls` hook from the `Controls` module to generate overlay controls based on the `input` type and `config` properties. The `useImageControls` hook returns an object with `controls` and `classSets` properties. `controls` is an object that maps control names to control values. `classSets` is an object that maps class names to CSS styles for the overlay controls. 
+
+The `PanelImageConfig` component also uses the `useMemo` hook to memoize the `updatedConfig` and `exemplars` variables. `updatedConfig` is an object that contains the updated `config` prop with the `overlayControls` property set to the `controls` object from the `useImageControls` hook. `exemplars` is an array of objects that contain information about the image files, such as their paths and bounding boxes. 
+
+The `PanelImageConfig` component renders a `ControlsImageOverlays` component with various props, including `boxes`, `controls`, `classSets`, and `updateControls`. `ControlsImageOverlays` is a component that renders overlay controls for an image panel. The `boxes` prop is an object that maps box names to arrays of bounding boxes. The `controls` prop is an object that maps control names to control values. The `classSets` prop is an object that maps class names to CSS styles for the overlay controls. The `updateControls` prop is a function that updates the `config` prop. 
+
+The `Spec` object is an object that contains information about the image panel component, such as its `id`, `displayName`, `ConfigComponent`, `Component`, `inputType`, `canFullscreen`, and `defaultFixedSize`. `id` is a string that identifies the component. `displayName` is a string that specifies the name of the component. `ConfigComponent` is a component that renders the configuration options for the component. `Component` is a component that renders the component itself. `inputType` is an object that specifies the input type for the component. `canFullscreen` is a boolean that determines whether the component can be displayed in fullscreen mode. `defaultFixedSize` is a function that returns an object with `width` and `height` properties that specify the default size of the component. 
+
+Overall, this code provides a flexible and customizable way to render image panels with overlay controls in the `weave` project. Developers can use the `PanelImage` and `PanelImageConfig` components to create image panels with different layouts and overlay controls, and can customize the appearance of the overlay controls using the `classSets` prop.
+## Questions: 
+ 1. What is the purpose of the `weave` module and how is it being used in this code?
+- The `weave` module is being used to replace input variables in the `exemplarsNode` variable and is being accessed through the `useWeaveContext` hook.
+2. What is the purpose of the `PanelImage` component and what are its props?
+- The `PanelImage` component is responsible for rendering an image with optional bounding boxes and masks. Its props include `config` which contains information about the layout and controls, and `input` which contains information about the image file.
+3. What is the purpose of the `PanelImageConfig` component and how is it being used?
+- The `PanelImageConfig` component is responsible for rendering the controls for the `PanelImage` component. It is being used as the `ConfigComponent` for the `PanelImage` component in the `Spec` object.

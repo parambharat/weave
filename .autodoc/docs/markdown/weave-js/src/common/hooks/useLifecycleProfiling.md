@@ -1,0 +1,34 @@
+[View code on GitHub](https://github.com/wandb/weave/weave-js/src/common/hooks/useLifecycleProfiling.ts)
+
+The code above is a module that exports a single function called `useLifecycleProfiling`. This function is used to track the duration that a component is mounted in a React application. It takes two parameters: `id` and `cb`. `id` is a unique identifier for the component, and `cb` is a callback function that handles the data collected by the function.
+
+The function uses the `useEffect` hook from the React library to track the duration that the component is mounted. The `useEffect` hook is called with a function that sets a timestamp `x` when the component is mounted and returns another function that sets a timestamp `y` when the component is unmounted. The difference between `x` and `y` is the duration that the component was mounted.
+
+The `cb` function is called with an object that contains the `id` of the component, the `start` timestamp `x`, the `stop` timestamp `y`, and the `duration` of the component. The `duration` is calculated by subtracting `x` from `y` and rounding up to the nearest integer.
+
+This function can be used in a larger project to track the performance of different components. For example, a developer can use this function to log the performance of different components and identify which components are causing performance issues. The `cb` function can be customized to send the data to a server for further analysis or to display the data in a dashboard for monitoring purposes.
+
+Here is an example of how to use the `useLifecycleProfiling` function in a React component:
+
+```jsx
+import { useLifecycleProfiling } from 'weave';
+
+function MyComponent() {
+  useLifecycleProfiling('my-component', (data) => {
+    console.log(data);
+  });
+
+  return <div>Hello World</div>;
+}
+```
+
+In the example above, the `useLifecycleProfiling` function is called with the `id` of the component set to `'my-component'` and a callback function that logs the data to the console. When the component is mounted and unmounted, the `cb` function is called with the data collected by the function.
+## Questions: 
+ 1. What is the purpose of the `useLifecycleProfiling` function?
+- The `useLifecycleProfiling` function is used to track the duration that a component is mounted and execute a callback to handle the data.
+
+2. What is the `ProfileData` type used for?
+- The `ProfileData` type is used to define the shape of the data that is passed to the callback function in `useLifecycleProfiling`.
+
+3. Why is `eslint-disable-line react-hooks/exhaustive-deps` included in the `useEffect` hook?
+- `eslint-disable-line react-hooks/exhaustive-deps` is included to disable the warning that would normally be triggered by not including all dependencies in the `useEffect` dependency array. This is because the `useEffect` hook only needs to run once when the component mounts, and not on subsequent updates.

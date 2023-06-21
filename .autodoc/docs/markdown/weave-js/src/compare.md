@@ -1,0 +1,27 @@
+[View code on GitHub](https://github.com/wandb/weave/weave-js/src/compare.ts)
+
+The code above defines a TypeScript function called `compare` that takes in three parameters: `op`, `x`, and `y`. The `op` parameter is of type `CompareOp`, which is a union type that can only be either `'gte'` or `'lte'`. The `x` and `y` parameters are both of type `number`. 
+
+The purpose of this function is to compare two numbers (`x` and `y`) based on the comparison operator (`op`) provided. If `op` is `'gte'`, the function will return `true` if `x` is greater than or equal to `y`, and `false` otherwise. If `op` is `'lte'`, the function will return `true` if `x` is less than or equal to `y`, and `false` otherwise. 
+
+This function can be used in various parts of the larger project to compare numbers based on different comparison operators. For example, if the project involves sorting a list of numbers in ascending order, the `compare` function can be used to compare two numbers and determine which one should come first in the sorted list. 
+
+Here's an example usage of the `compare` function:
+
+```
+const result1 = compare('gte', 5, 3); // returns true
+const result2 = compare('lte', 10, 8); // returns false
+``` 
+
+In the first example, `result1` will be `true` because `5` is greater than or equal to `3`. In the second example, `result2` will be `false` because `10` is not less than or equal to `8`. 
+
+Overall, the `compare` function provides a simple and reusable way to compare numbers based on different operators, which can be useful in various parts of the larger project.
+## Questions: 
+ 1. **What is the purpose of this code?** 
+This code exports a type `CompareOp` and a function `compare` that takes in two numbers and a comparison operator and returns a boolean value based on the comparison.
+
+2. **What are the possible values for the `CompareOp` type?** 
+The `CompareOp` type can have two possible values: `'gte'` or `'lte'`.
+
+3. **What happens if an invalid comparison operator is passed to the `compare` function?** 
+If an invalid comparison operator is passed to the `compare` function, the function will default to the `else` block and return `x <= y`. It may be useful to add error handling or a default behavior for unexpected input.

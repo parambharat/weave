@@ -1,0 +1,20 @@
+[View code on GitHub](https://github.com/wandb/weave/weave-js/src/components/Panel2/PanelRootBrowser/ViewerProjectsTable.tsx)
+
+The `ViewerProjectsTable` component is a React functional component that renders a table of projects for a given entity. The component uses the `useWeaveContext` hook from the `@wandb/weave/context` module to get the Weave context, which is an object that provides access to the Weave API. The component also imports several other modules from the `@wandb/weave` package, including `Node`, `opArray`, `opEntityName`, `opEntityProjects`, `opProjectName`, `opProjectUpdatedAt`, `opRootEntity`, `opRootProject`, `opRootViewer`, and `WeaveInterface`.
+
+The `ViewerProjectsTable` component takes a single prop, `props`, which is an object that contains a `config` property and an `updateConfig` property. The `config` property is an object that contains configuration options for the table, such as the title and subtitle. The `updateConfig` property is a function that can be used to update the configuration options.
+
+The `ViewerProjectsTable` component first uses the `useMemo` hook from the `react` package to create a memoized version of the `opEntityName` node, which is used to get the name of the current entity. The component then uses the `useNodeValue` hook from the `@wandb/weave/react` module to get the value of the `opEntityName` node. The `entities` variable is then created using the `useMemo` hook to extract the result from the `entitiesValue` object.
+
+The `cardConfig` variable is created using the `useConfigChild` hook from the `../panel` module. This hook takes four arguments: the name of the child configuration, the parent configuration, the update function for the parent configuration, and the child configuration itself. The child configuration is an object that contains the title, subtitle, and content of the card. The content is an array of objects, one for each entity, that contains the name of the entity and a data node that is used to get the projects for that entity. The `makeTableState` function is called to create the table state for each entity.
+
+Finally, the `PanelCard` component from the `../PanelCard` module is rendered with the appropriate props. The `PanelCard` component takes an `input` prop, which is set to `voidNode()`, a `config` prop, which is set to `cardConfig.config`, an `updateConfig` prop, which is set to `cardConfig.updateConfig`, a `context` prop, which is set to `props.context`, an `updateContext` prop, which is set to `props.updateContext`, and an `updateInput` prop, which is set to `props.updateInput`. The `PanelCard` component renders a card with a table of projects for the selected entity.
+## Questions: 
+ 1. What is the purpose of the `makeTableState` function?
+   - The `makeTableState` function creates and returns a table state object based on the input node, Weave interface, and entity name provided as arguments.
+
+2. What is the `ViewerProjectsTable` component rendering?
+   - The `ViewerProjectsTable` component renders a `PanelCard` component with a configuration object that includes a list of entities and their corresponding project names and update times.
+
+3. What is the purpose of the `useMemo` hook in this code?
+   - The `useMemo` hook is used to memoize the result of expensive computations, such as generating the configuration object for the `PanelCard` component, so that they are only recomputed when necessary.

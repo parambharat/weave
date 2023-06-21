@@ -1,0 +1,18 @@
+[View code on GitHub](https://github.com/wandb/weave/weave-js/src/common/components/JupyterViewer.tsx)
+
+The `weave` project contains a file called `JupyterViewerFromRun` which is responsible for rendering Jupyter notebooks. The file imports several dependencies including `ansi_up`, `classnames`, `prismjs`, `react`, and `monaco-editor`. The `JupyterViewerFromRun` component takes in a `File` object and a `useLoadFile` function as props. The `useLoadFile` function is used to asynchronously load the contents of the file. Once the file contents are loaded, the `JupyterViewer` component is rendered with the loaded file contents passed as a prop. 
+
+The `JupyterViewer` component is responsible for parsing the JSON contents of the Jupyter notebook and rendering each cell of the notebook. The component first parses the JSON contents of the notebook and then maps over each cell in the notebook. For each cell, the component renders a `JupyterCell` component. The `JupyterCell` component is responsible for rendering the input and output of each cell. If the cell is a code cell, the input is rendered using the `MonacoEditor` component. The output of the cell is rendered using the `processOutputs` function which maps over each output in the cell and renders it appropriately. 
+
+The `processOutputs` function is responsible for rendering the output of each cell. The function maps over each output in the cell and checks the type of the output. If the output is a stream or error, the function renders the output as a `div` with the appropriate class name. If the output is an image, the function renders the image using the `renderedImage` function. If the output is HTML, the function renders the HTML in an `iframe`. If the output is markdown, the function converts the markdown to HTML using the `generateHTML` function and renders the HTML. If the output is JSON or plain text, the function renders the output as a `div`. 
+
+Overall, the `JupyterViewerFromRun` file is responsible for rendering Jupyter notebooks in the `weave` project. The file imports several dependencies including `ansi_up`, `classnames`, `prismjs`, `react`, and `monaco-editor`. The `JupyterViewerFromRun` component takes in a `File` object and a `useLoadFile` function as props. The `useLoadFile` function is used to asynchronously load the contents of the file. Once the file contents are loaded, the `JupyterViewer` component is rendered with the loaded file contents passed as a prop. The `JupyterViewer` component is responsible for parsing the JSON contents of the Jupyter notebook and rendering each cell of the notebook. The `JupyterCell` component is responsible for rendering the input and output of each cell. The `processOutputs` function is responsible for rendering the output of each cell.
+## Questions: 
+ 1. What is the purpose of the `JupyterViewerFromRun` component?
+- The `JupyterViewerFromRun` component is responsible for loading a Jupyter notebook file and rendering it using the `JupyterViewer` component.
+
+2. What is the purpose of the `processOutputs` function?
+- The `processOutputs` function processes the outputs of a Jupyter notebook cell and returns an array of JSX elements representing the outputs.
+
+3. What is the purpose of the `renderedImage` function?
+- The `renderedImage` function returns a JSX element representing an image output of a Jupyter notebook cell, given the output data, type, and key.

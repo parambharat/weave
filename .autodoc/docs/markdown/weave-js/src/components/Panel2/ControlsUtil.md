@@ -1,0 +1,28 @@
+[View code on GitHub](https://github.com/wandb/weave/weave-js/src/components/Panel2/ControlsUtil.tsx)
+
+The `weave` project contains a file that exports several React components used for creating UI controls. These components are used to create sliders, checkboxes, dropdowns, and other UI elements that allow users to interact with the application. 
+
+The `BoxConfidenceControl` component is used to create a slider control for adjusting the confidence level of a bounding box. It takes in several props, including the name of the control, the range of the slider, and functions to handle changes to the slider value, the operator used to compare the slider value, and whether the control is disabled. The component renders a checkbox to enable/disable the control, a label for the control name, a dropdown to select the comparison operator, and a slider to adjust the value. 
+
+The `SearchInput` component is a simple input field with a search icon that allows users to search for specific items in the application. It takes in a value and a function to handle changes to the input value. 
+
+The `VisibilityToggle` component is a simple icon that toggles between showing and hiding content. It takes in a boolean value to determine whether the content is currently hidden and a function to handle clicks on the icon. 
+
+The `ClassToggle` component is used to create a button that toggles the visibility of a specific class of items. It takes in the name of the class, a boolean value to determine whether the class is currently disabled, and a color for the button. If the name of the class is "all", it renders a `VisibilityToggle` component instead. 
+
+The `LabelToggle` component is similar to the `ClassToggle` component but is used for toggling the visibility of labels. It takes in a boolean value to determine whether the label is currently disabled and a function to handle clicks on the toggle icon. 
+
+The `ControlTitle` component is a styled `span` element used for rendering the title of a control. 
+
+The `ClassToggleWithSlider` component is similar to the `ClassToggle` component but includes a slider control for adjusting the opacity of the class. It takes in the same props as `ClassToggle` as well as a value for the opacity and a function to handle changes to the opacity value. 
+
+Overall, these components are used to create a variety of UI controls for the `weave` project. They can be used to create sliders, checkboxes, dropdowns, and other UI elements that allow users to interact with the application.
+## Questions: 
+ 1. What is the purpose of the `BoxConfidenceControl` component?
+- The `BoxConfidenceControl` component is used to render a slider input with a checkbox, dropdown, and labels for controlling the confidence level of a bounding box.
+
+2. What is the difference between `ClassToggle` and `LabelToggle` components?
+- The `ClassToggle` component is used to render a button with a name and color, while the `LabelToggle` component is used to render a button with a name and a visibility toggle icon.
+
+3. What is the purpose of the `SearchInput` component?
+- The `SearchInput` component is used to render an input field with a search icon for filtering search results.

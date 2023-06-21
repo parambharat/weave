@@ -1,0 +1,20 @@
+[View code on GitHub](https://github.com/wandb/weave/weave-js/src/core/language/js/print.ts)
+
+The code in this file provides high-level functions for manipulating and interpreting a compute graph. The functions in this file are used by the user interface (UI) to interact with the graph. 
+
+The `nodeToString` function takes an `EditingNode` object, an `OpStore` object, a `level` number, and a `root` object (which is optional). It returns a string representation of the node. The function first checks if the node is a constant, void, variable, or null. If it is a constant, it checks if it is an object, function argument, or null. If it is an object, it returns the type of the object. If it is a function argument, it returns the function string. If it is null, it returns the string "null". If the constant is a string that contains double quotes and no single quotes, it serializes it as a single-quoted string. If the node is void, it returns an empty string. If the node is a variable, it returns the variable name. If the node is none, it returns an empty string. If the node is not any of the above, it returns the string representation of the node's `fromOp` object. 
+
+The `opToString` function takes an `EditingOp` object, an `EditingNode` object, an `OpStore` object, and a `level` number. It returns a string representation of the operation. The function first gets the argument values of the operation. It then checks if the operation is an array literal, dictionary literal, unary, binary, brackets, chain, or function. Depending on the type of operation, it returns the appropriate string representation. 
+
+The `typeToString` function takes a `Type` object, a boolean `simple`, a `level` number, and a boolean `skipTags`. It returns a string representation of the type. The function first checks if the type is undefined. If it is, it returns the string "INVALID_TYPE_ERROR". If `skipTags` is true and the type is a tagged value, it returns the string representation of the tagged value's value type. If the type is a simple type shape, it returns the type. If the type is a typed dictionary, table, joined-table, or partitioned-table, it returns the appropriate string representation. If the type is a dictionary, it returns the string representation of the object type. If the type is tagged, it returns the string representation of the tag and value types. If the type is a list, it returns the string representation of the object type. If the type is a function, it returns the string representation of the output type. If the type is a file, it returns the appropriate string representation. If the type is a directory, it returns the string "Dir". If the type is a union, it returns the appropriate string representation. If the type is an ndarray, it returns the string representation of the shape. If the type is a constant, it returns the string representation of the value type. If the type is a media type, it returns the type. If the type is not any of the above, it throws an error. 
+
+Overall, this code provides functions that allow the user interface to interact with the compute graph by providing string representations of nodes, operations, and types.
+## Questions: 
+ 1. What is the purpose of the `weave` project and how does this file fit into it?
+- The `weave` project involves manipulating and interpreting a compute graph, and this file contains high-level functions for interacting with the graph that are used by the user interface (UI).
+
+2. What external libraries or modules does this file depend on?
+- This file imports the `lodash` library and uses functions from various other files within the `weave` project.
+
+3. What types of data can be passed to the `nodeToString` function and what is the expected output?
+- The `nodeToString` function takes in an `EditingNode` object, an `OpStore` object, an optional `level` number, and an optional `root` `EditingNode` object. It returns a string representation of the node, which can be a constant value, a function argument, a variable, or an operation.

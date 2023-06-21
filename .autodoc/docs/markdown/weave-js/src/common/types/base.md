@@ -1,0 +1,26 @@
+[View code on GitHub](https://github.com/wandb/weave/weave-js/src/common/types/base.ts)
+
+This file contains a set of generic type helpers that can be used throughout the larger project. These helpers are designed to make it easier to work with complex types and to enforce type safety. 
+
+The first set of helpers are simple type helpers. `Omit` takes a type `T` and a key `K` and returns a new type that is `T` minus the single key `K`. `Subtract` takes a type `T` and a type `K` and returns a new type that is `T` minus all keys in `K`. `Exclude` takes a type `T` and a type `U` and returns a new type that is the union of `T` type with all types in `U` removed. `Unpack` takes an array type `A` and returns the type contained in the array. `Class` is a type that represents a constructor function.
+
+The next set of helpers are `RequireSome` and `Subset`. `RequireSome` requires a subset of keys from the original object. It takes a type `T` and a union of keys `U` and returns a new type that is `T` with the keys in `U` required. `Subset` requires only a subset of keys from the given type. It takes a type `T` and a union of keys `U` and returns a new type that is `T` with only the keys in `U` required.
+
+`DeepPartial` takes a type `T` and returns a new type that is the same as `T`, but with all properties marked as optional. `PartialSome` takes a type `T` and a union of keys `U` and returns a new type that is `T` with the keys in `U` optional.
+
+`Parameters` takes a function type `F` and returns a tuple of the parameter types of `F`.
+
+Finally, there are two interfaces `Match` and `MatchParams` that define the shape of URL parameters from a Route component. These interfaces can be used to enforce type safety when working with URL parameters.
+
+Overall, this file provides a set of generic type helpers that can be used throughout the larger project to enforce type safety and make it easier to work with complex types.
+## Questions: 
+ 1. What is the purpose of the `RequireSome` and `Subset` types?
+- `RequireSome` requires a subset of keys from an object to be present and non-null, while allowing other keys to be optional.
+- `Subset` requires only a subset of keys from an object to be present and non-null, while allowing other keys to be optional.
+
+2. What is the purpose of the `Match` and `MatchParams` interfaces?
+- `Match` represents the result of matching a URL path to a route, including information about the matched path and any parameters extracted from it.
+- `MatchParams` is an interface defining the possible parameters that can be extracted from a URL path match.
+
+3. What is the purpose of the `DeepPartial` type?
+- `DeepPartial` is a type that makes all properties of an object optional, including nested properties, allowing for partial updates of deeply nested objects.

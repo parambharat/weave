@@ -1,0 +1,41 @@
+[View code on GitHub](https://github.com/wandb/weave/weave-js/src/components/Panel2/PanelPlotly/Component.tsx)
+
+The `PanelPlotly` component is a React functional component that renders a Plotly chart in a Weave panel. It takes in a `PanelPlotlyProps` object as a prop, which contains an `updateConfig2` function and an `input` object. The `input` object is expected to be of type `Plotly`, which is defined as a constant object at the top of the file. The `updateConfig2` function is used to update the configuration of the Weave panel.
+
+The component first checks if `updateConfig2` is not null, and throws an error if it is. It then uses the `useMemo` hook to memoize the result of calling the `callOpVeryUnsafe` function from the `@wandb/weave/core` library with the arguments `'Plotly-contents'` and an object containing the `input` prop. This function is used to retrieve the JSON string representation of the Plotly chart data.
+
+The component then uses the `useRef` hook to create a reference to a `div` element, which will be used to render the Plotly chart. It also uses the `useNodeValue` hook from the `../../../react` module to get the result of the `jsonStringNode` memoized value. If the `loading` property of the result is true, the component returns early and does not render anything. Otherwise, it parses the JSON string into a `plotlySpec` object and uses the `Plotly.newPlot` function to render the chart in the `div` element. It also attaches event listeners to the `div` element for the `plotly_click` and `plotly_selected` events, which are used to update the `selected` property of the `PanelPlotlyConfig` object passed to `updateConfig2`.
+
+The `selected` property of the `PanelPlotlyConfig` object can be either an object containing `xMin`, `xMax`, `yMin`, and `yMax` properties, or a `Node` object. If the `plotly_selected` event contains a `range.geo` property, the component creates a `selection` object with the `xMin`, `xMax`, `yMin`, and `yMax` properties set to the corresponding values from the `range.geo` array. It then calls `updateConfig2` with a new `PanelPlotlyConfig` object containing a `selected` property that is a `Node` object created from the `selection` object using the `toWeaveType` function from the `../toWeaveType` module. If the `plotly_selected` event does not contain a `range.geo` property, the component creates a `selection` object with the `xMin`, `xMax`, `yMin`, and `yMax` properties set to the corresponding values from the `range` object. It then calls `updateConfig2` with a new `PanelPlotlyConfig` object containing a `selected` property that is a `Node` object created from the `selection` object using the `toWeaveType` function. 
+
+Finally, the component returns a `div` element with a `data-test-weave-id` attribute set to `"PanelPlotly"`, and a `style` object with `width` and `height` properties set to `"100%"`. The `ref` attribute of the `div` element is set to the `divRef` object created using the `useRef` hook. This `div` element is where the Plotly chart will be rendered.
+
+Example usage:
+```jsx
+import {PanelPlotly} from 'weave/panel/plotly';
+
+const MyPanel = () => {
+  const [config, setConfig] = useState({selected: null});
+
+  const handleUpdateConfig = useCallback((newConfig) => {
+    setConfig((oldConfig) => ({...oldConfig, ...newConfig}));
+  }, []);
+
+  return (
+    <PanelPlotly
+      input={{type: 'Plotly', data: [...], layout: {...}}}
+      updateConfig2={handleUpdateConfig}
+      config={config}
+    />
+  );
+};
+```
+## Questions: 
+ 1. What is the purpose of this code and what problem does it solve?
+- This code defines a React component called `PanelPlotly` that renders a Plotly chart based on input data. It allows users to interact with the chart and select data points or regions.
+
+2. What external libraries or dependencies does this code use?
+- This code imports several modules from external libraries, including `@wandb/weave/core` for core functionality, `plotly.js` for chart rendering, and `react` for building the UI.
+
+3. What is the expected input format for this component and how is it processed?
+- The `PanelPlotly` component expects input data in the form of a `Plotly` object. It uses a `jsonStringNode` to parse the input data and render the chart using `Plotly.newPlot()`. It also listens for user interactions with the chart and updates the component's state accordingly.

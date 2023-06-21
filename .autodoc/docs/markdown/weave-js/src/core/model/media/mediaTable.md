@@ -1,0 +1,24 @@
+[View code on GitHub](https://github.com/wandb/weave/weave-js/src/core/model/media/mediaTable.ts)
+
+The `weave` module contains functions and constants related to data manipulation and type detection. The module imports the `lodash` library, as well as other modules from the `weave` project.
+
+The `SPECIAL_ID_COLUMN_NAMES` constant is an array of column names that are treated specially, such as by automatically joining using them. The `isIdColumnName` function takes a column name as input and returns a boolean indicating whether it is in the `SPECIAL_ID_COLUMN_NAMES` array.
+
+The `valToMediaType` function takes a value and a column name as input and returns a `Types.Type` value indicating the data type of the value. The function first checks if the column name is in the `SPECIAL_ID_COLUMN_NAMES` array and returns `'id'` if it is. Otherwise, the function checks the type of the value and returns `'string'`, `'number'`, `'boolean'`, or `'unknown'` as appropriate. If the value is an array, the function recursively calls itself on the first element of the array to determine the type of the elements. If the value is an object, the function checks if it is a specific type of object (e.g. an image file) and returns the appropriate type.
+
+The `wbTypeToMediaType` function takes a `WBType.WBType` value as input and returns a `Types.Type` value indicating the data type of the value. The function checks the `wb_type` property of the input value and returns `'number'`, `'string'`, `'boolean'`, `'any'`, `'none'`, or `'unknown'` as appropriate. If the input value is a constant type, the function calls `valToMediaType` on the `val` property of the input value. If the input value is a typed dictionary type, the function recursively calls itself on the `type_map` property of the input value to determine the types of the properties. If the input value is a list type, the function recursively calls itself on the `element_type` property of the input value to determine the type of the elements. If the input value is an image file type, the function returns an object with the type `'image-file'` and additional properties such as `boxLayers` and `classMap`. The function also handles other specific types of objects (e.g. video files, tables, and timestamps) and returns the appropriate type.
+
+The `tableNeedsFloatColumnConversion` function takes a `WBType.MediaTable` value as input and returns a boolean indicating whether the table needs to be converted to float columns. The function checks if the keys of the `type_map` property of the `column_types` property of the input value match the columns of the table with `.0` appended to them.
+
+The `detectColumnTypes` function takes a `WBType.MediaTable` value as input and returns an array of `Types.Type` values indicating the data types of the columns of the table. The function first determines whether the table needs to be converted to float columns by calling `tableNeedsFloatColumnConversion`. For each column of the table, the function checks if the column is a special ID column and returns `'id'` if it is. Otherwise, the function checks the `type_map` property of the `column_types` property of the input value to determine the type of the column. If the type cannot be determined or is an "open" type, the function infers the type from the data in the column.
+
+The `agg` function takes a type of aggregation (`'concat'`, `'max'`, `'min'`, or `'avg'`) and an array of data as input and returns the aggregated value. If the type is `'concat'`, the function returns the data as is. Otherwise, the function returns the maximum, minimum, or average of the data as appropriate.
+## Questions: 
+ 1. What is the purpose of the `valToMediaType` function?
+- The `valToMediaType` function is used to determine the data type of a given value based on its value and column name.
+
+2. What is the significance of the `SPECIAL_ID_COLUMN_NAMES` constant?
+- The `SPECIAL_ID_COLUMN_NAMES` constant contains a list of column names that are treated specially, such as automatically joining using them. 
+
+3. What is the purpose of the `detectColumnTypes` function?
+- The `detectColumnTypes` function is used to detect the data types of each column in a given table, either by using the column types provided or inferring from the data itself if the type is unknown.

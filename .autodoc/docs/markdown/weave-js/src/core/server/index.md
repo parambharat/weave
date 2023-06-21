@@ -1,0 +1,31 @@
+[View code on GitHub](https://github.com/wandb/weave/weave-js/src/core/server/index.ts)
+
+This code exports several modules and a type from the `weave` project. The purpose of this code is to provide a way for other parts of the project to access and use these modules and types. 
+
+The `LocalServer` module is exported from the `./local` file. This module likely provides functionality for running a server locally on the user's machine. This could be useful for testing or development purposes. 
+
+The `RemoteHttpServer` module is exported from the `./remoteHttp` file. This module likely provides functionality for running a server remotely over HTTP. This could be useful for deploying the project to a server or hosting it on a cloud platform. 
+
+The `ServerWithShadow` module is exported from the `./shadow` file. This module likely provides functionality for running a server with a shadow copy. This could be useful for testing or development purposes, as it allows changes to be made to the server without affecting the live version. 
+
+The `Server` type is exported from the `./types` file. This type likely defines the structure and properties of a server object. This could be useful for ensuring consistency and type safety throughout the project. 
+
+Overall, this code provides a way for other parts of the `weave` project to access and use these server-related modules and types. For example, if a developer wanted to create a new server instance, they could import the `LocalServer` module and use it to create a new server object. 
+
+Example usage:
+
+```
+import { LocalServer } from 'weave';
+
+const server = new LocalServer();
+server.start();
+```
+## Questions: 
+ 1. **What is the purpose of the `weave` project?**\
+   The code exports different server classes and types from various files within the `weave` project, but without additional context it is unclear what the overall purpose of the project is.
+   
+2. **What is the difference between the `LocalServer` and `RemoteHttpServer` classes?**\
+   The code exports both `LocalServer` and `RemoteHttpServer` classes, but without additional information it is unclear what the differences are between these two classes and when one should be used over the other.
+   
+3. **What is the `ServerWithShadow` class and how does it differ from the other server classes?**\
+   The code exports a `ServerWithShadow` class, but without additional information it is unclear what this class does and how it differs from the other server classes exported in the file.
